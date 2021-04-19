@@ -1,0 +1,20 @@
+<h1>商品一覧</h1>
+
+<!--＋表記やっていない-->
+
+<% @items.each do |item| %>
+<table class = "table table-hover table-inverse">
+  <thead>
+    <tr>
+      <th>商品ID: </th>
+      <th>商品名: <%= item.name %></th>
+      <th>税抜価格: <%= item.price %></th>
+      <!--<th>ジャンル: <%#= item.items_genre_id %></th>-->
+      <th>ステータス: <%= item.is_saled %></th>
+    </tr>
+  </thead>
+</table>
+
+<% end %>
+
+<!--ページ移動やっていない-->

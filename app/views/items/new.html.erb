@@ -1,0 +1,27 @@
+<h1>商品新規登録</h1>
+
+<%= form_with model:@item, local:true do |f| %>
+
+<P>商品画像</P>
+<%= f.attachment_field :image %>
+
+<p>商品名</p>
+<%= f.text_field :name %>
+
+<P>商品説明</P>
+<%= f.text_field :description %>
+
+<!--<p>ジャンル</p>-->
+<%#= f.collection_select :items_genre_id, .all %>
+
+<P>税抜価格</P>
+<%= f.text_field :price %>
+
+<P>販売ステータス</P>
+<%= f.radio_button :is_saled, :true %><P>販売中</P>
+<%= f.radio_button :is_saled, :false %><P>販売停止中</P>
+
+<%= f.submit '新規登録' %>
+
+
+<% end %>
