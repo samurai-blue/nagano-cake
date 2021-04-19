@@ -1,0 +1,41 @@
+<h1>マイページ</h1>
+<h3>登録情報</h3>
+
+<%= link_to "編集する", edit_customer_path, class: "button is-warning is-light" %>
+
+<div>
+  <p>氏名</p>
+  <%= current_customer.last_name %>
+  <%= current_customer.first_name %>
+</div>
+
+<div>
+  <p>カナ</p>
+  <%= current_customer.last_name_kana %>
+  <%= current_customer.first_name_kana %>
+</div>
+
+<div>
+  <p>郵便番号</p>
+  <%= current_customer.postal_code %>
+</div>
+
+<div>
+  <p>住所</p>
+  <%= current_customer.address %>
+</div>
+
+<div>
+  <p>電話番号</p>
+  <%= current_customer.telephone_number %>
+</div>
+
+<div>
+  <p>メールアドレス</p>
+  <%= current_customer.email %>
+</div>
+
+<h3>配送先</h3>
+<button type="submit" class="btn btn-primary">一覧を見る</button>
+<h3>注文履歴</h3>
+<button type="submit" class="btn btn-primary">一覧を見る</button>
