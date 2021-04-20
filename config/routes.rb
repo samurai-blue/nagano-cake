@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  
+ 
+  devise_for :admins, controllers: {sessions: 'admins/sessions'}
+  devise_for :customers, controllers: {sessions: 'customers/sessions'}
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root to: "homes#top"
+
+  get "homes/about", to: "homes#about"
   
   # resource :shippings, only: [:create, :index, :destroy, :update, :edit]
   post "shippings" =>"shippings#create"
@@ -7,9 +13,6 @@ Rails.application.routes.draw do
   get 'shippings/:id/edit' => 'shippings#edit', as: 'edit_shipping'
   patch 'shippings/:id' => 'shippings#update', as: 'update_shipping'
   delete 'shippings/:id' => 'shippings#destroy', as: 'destroy_shipping'
-  # get 'shippings/destroy'
-  # get 'shippings/update'
-  # get 'shippings/edit'
   
   get 'orders/index'
   get 'orders/show'
@@ -17,7 +20,12 @@ Rails.application.routes.draw do
   get 'orders/new'
   get 'orders/check'
   get 'orders/finish'
-  devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  
+
+  resource :customer, only: [:show,:edit,:update] do
+    collection do
+      get 'out'
+      patch 'withdraw'
+    end
+  end
+
 end
