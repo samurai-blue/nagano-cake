@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
 def index
   @items = Item.all
   @item = Item.new
+  @items = Item.all.page(params[:page]).per(2)
 end
 
 def show
@@ -32,7 +33,7 @@ end
 private
 
 def item_params
-    params.require(:item).permit(:image_id, :name, :description, :genre_id, :price, :is_saled)
+    params.require(:item).permit(:image, :name, :description, :genre_id, :price, :is_saled)
 end
 
 end
