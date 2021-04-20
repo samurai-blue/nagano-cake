@@ -1,22 +1,27 @@
-<!--header部分プレート-->
-
 <h1>商品詳細</h1>
 
-画像表示
+<!--画像表示-->
 
-<P>商品名</P>
-<%= item.name %>
+<%= attachment_image_tag @item, :image_id %>
+<tbody>
+    <tr>
+    <th>商品名</th>
+    <%= @item.name %>
+     </tr>
 
-<P>商品説明</P>
-<%= item.description %>
+    <tr>
+    <th>商品説明</th>
+    <%= @item.description %>
+    </tr>
 
-<p>ジャンル</p>
-<%= item.items_genre_id %>
+    <th>ジャンル</th>
+    <%= @item.genre_id %>
 
-<p>税込価格</p>
-<%= item.price %>
+    <th>税込価格</th>
+    <%= @item.price %>
 
-<p>販売ステース</p>
-<%= item.is_saled %>
+    <th>販売ステース</th>
+    <%= @item.is_saled %>
 
-<%= f.submit '編集する' %>
+    <%= link_to '編集する', edit_item_path(@item) %>
+</tbody>

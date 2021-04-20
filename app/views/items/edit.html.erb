@@ -12,12 +12,12 @@
 <%= f.text_field :description %>
 
 <p>ジャンル</p>
-<%= f.check_box :items_genre_id %>
+<%= f.check_box :genre_id %>
 
 <P>税抜価格</P>
 <%= f.text_field :price %>
 
-<P>販売ステータス</p>
+<p>販売ステータス</p>
 <%= f.select :is_saled ,[['販売中',true],['販売停止中',false]] %>
 
 <%= f.submit '変更を保存' %>

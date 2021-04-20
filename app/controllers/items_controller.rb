@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
 
 def index
   @items = Item.all
-  # @item = Item.new
+  @item = Item.new
 end
 
 def show
@@ -26,13 +26,13 @@ end
 def update
   item = Item.find(params[:id])
   item.update(item_params)
-  redirect_to ''
+  redirect_to item_path(item)
 end
 
 private
 
 def item_params
-    params.require(:item).permit(:image_id, :name, :description, :items_genre_id, :price)
+    params.require(:item).permit(:image_id, :name, :description, :genre_id, :price, :is_saled)
 end
 
 end
