@@ -22,8 +22,9 @@ Rails.application.routes.draw do
       get 'out'
       patch 'withdraw'
     end
+    resources :shippings, only: [:index, :create, :destroy, :update, :edit]
   end
 
-  resources :shippings, only: [:index, :create, :destroy, :update, :edit]
+
 
 end

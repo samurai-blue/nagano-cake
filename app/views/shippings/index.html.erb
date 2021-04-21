@@ -12,7 +12,7 @@
 <h3>新規登録</h3>
 
 <table class="table">
-  <%= form_with model: @shipping , url:shippings_path, local:true do |f| %>
+  <%= form_with model: @shipping , url:customer_shippings_path, local:true do |f| %>
   <div class= "shipping col-xs-10">
     <tr class ="form-group col-xs-12">
       <th><%= f.label :"郵便番号" %></th>
@@ -54,8 +54,8 @@
         <td><%= shipping.postal_code %></td>
         <td><%= shipping.address %></td>
         <td><%= shipping.name %></td>
-        <td><%= link_to "EDIT", edit_shipping_path(shipping.id) %></td>
-        <td><%= link_to "DELETE",shipping_path(shipping.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
+        <td><%= link_to "EDIT", edit_customer_shipping_path(shipping.id) %></td>
+        <td><%= link_to "DELETE",customer_shipping_path(shipping.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
       </tr>
     <% end %>
   </tbody>
