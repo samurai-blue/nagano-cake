@@ -9,7 +9,6 @@ Rails.application.routes.draw do
     resources :customers,only: [:index,:show,:edit,:update]
   end
 
-  devise_for :customers, controllers: {sessions: 'customers/sessions'}
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -29,22 +28,14 @@ Rails.application.routes.draw do
       get 'out'
       patch 'withdraw'
     end
+    resources :shippings, only: [:index, :create, :destroy, :update, :edit]
   end
 
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :genres
   resources :items
 
   namespace :admin do
     resources :items,only: [:index, :show, :edit, :update]
   end
-
-  resources :shippings, only: [:index, :create, :destroy, :update, :edit]
-
-
-
-  resources :shippings, only: [:index, :create, :destroy, :update, :edit]
-
 
 end
