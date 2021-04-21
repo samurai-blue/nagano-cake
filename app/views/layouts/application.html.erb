@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,10 +10,45 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+<!--会員ページのヘッダー部部になります-->
+<!--ログイン状態に応じて切り替え-->
+<!--          管理者画面のヘッダーは内容が異なるので別に用意が必要そうです        -->
+
+    <header>
+      <nav class = "navbar navbar-expand-lg  navbar-dark bg-success">
+        <div class = "container">
+          <%= link_to "[logo]",orders_index_path, class: "navbar-brand" %>         <!--リンク先を変える-->
+          
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          
+          <div class ="collapse navbar-collapse">       <!--classの中にid必要？-->
+            <ul class = "navbar-nav">
+              < % if user_signed_in? %>
+                <li class ="nav-item">ようこそcurrentuserさん</li>
+                <li class ="nav-item"><%= link_to "マイページ",orders_index_path %></li>
+                <li class ="nav-item"><%= link_to "商品一覧", orders_index_path %></li>
+                <li class ="nav-item"><%= link_to "カート", orders_index_path %></li>
+                <li class ="nav-item"><%= link_to "ログアウト", orders_index_path %></li>
+              
+              < % else %>
+                <li class ="nav-item">ようこそゲストさん</li>
+                <li class ="nav-item"><%= link_to "About", orders_index_path %></li>
+                <li class ="nav-item"><%= link_to "ログイン", orders_index_path %></li>
+                <li class ="nav-item"><%= link_to "新規登録", orders_index_path %></li>
+              
+              < % end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    
+    
   <body>
-    <main>
-      <p id="notice"><%= notice %></p>
-      <%= yield %>
-    </main>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <%= yield %>
   </body>
 </html>
