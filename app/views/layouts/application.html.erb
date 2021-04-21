@@ -1,4 +1,4 @@
-taku.oyamada
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -10,7 +10,45 @@ taku.oyamada
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+<!--会員ページのヘッダー部部になります-->
+<!--ログイン状態に応じて切り替え-->
+<!--          管理者画面のヘッダーは内容が異なるので別に用意が必要そうです        -->
+
+   <header>
+      <nav class = "navbar navbar-expand-lg  navbar-dark bg-success">
+        <div class = "container">
+          <%= link_to "[logo]",root_path, class: "navbar-brand" %>         <!--リンク先を変える-->
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class ="collapse navbar-collapse">       <!--classの中にid必要？-->
+            <ul class = "navbar-nav">
+              <% if customer_signed_in? %>
+                <li class ="nav-item">ようこそ<%= current_customer.last_name %><%= current_customer.first_name %>さん</li>
+                <li class ="nav-item"><%= link_to "マイページ", customer_path %></li>
+                <li class ="nav-item"><%= link_to "商品一覧", orders_index_path %></li>
+                <li class ="nav-item"><%= link_to "カート", orders_index_path %></li>
+                <li class ="nav-item"><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></li>
+
+              <% else %>
+                <li class ="nav-item">ようこそゲストさん</li>
+                <li class ="nav-item"><%= link_to "About", homes_about_path %></li>
+                <li class ="nav-item"><%= link_to "ログイン", new_customer_session_path %></li>
+                <li class ="nav-item"><%= link_to "新規登録", new_customer_registration_path %></li>
+
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+
   <body>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
 </html>
