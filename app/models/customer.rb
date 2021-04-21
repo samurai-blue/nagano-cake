@@ -1,6 +1,9 @@
 class Customer < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+
+  has_many :shippings, dependent: :destroy
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -8,12 +11,17 @@ class Customer < ApplicationRecord
               :postal_code, :address, :telephone_number,
               presence: true
 
-    # 会員フルネーム
   def full_name
     self.last_name + " " + self.first_name
   end
+
   def kana_full_name
     self.last_name_kana + " " + self.first_name_kana
-  end  
-  
+  end
+  #ログイン時に退会済みのユーザーが同じアカウントでログイン出来ないようにする。
+  # true = ログインユーザーが有効な状態（退会していない）
+  def active_for_authentication?
+    super && (self.is_valid == true)
+  end
+
 end

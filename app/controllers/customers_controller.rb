@@ -25,10 +25,14 @@ class CustomersController < ApplicationController
 
   def out
     @customer = current_customer
-     @user.update(is_valid: false)
-     reset_session
-     flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
-     redirect_to root_path
+  end
+
+  def withdraw
+    @customer = current_customer
+    @customer.update(is_valid: false)
+    reset_session
+    flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
+    redirect_to root_path
   end
 
   def customer_params
