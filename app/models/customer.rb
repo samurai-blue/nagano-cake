@@ -3,6 +3,7 @@ class Customer < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 
   has_many :shippings, dependent: :destroy
+  has_many :oders
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

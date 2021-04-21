@@ -16,12 +16,12 @@ Rails.application.routes.draw do
 
   get "homes/about", to: "homes#about"
 
-  get 'orders/index'
-  get 'orders/show'
-  get 'orders/create'
-  get 'orders/new'
-  get 'orders/check'
-  get 'orders/finish'
+  resources :orders, only: [:index,:create,:show,:new] do
+    collection do
+      post 'check'
+      get 'finish'
+    end
+  end
 
   resource :customer, only: [:show,:edit,:update] do
     collection do

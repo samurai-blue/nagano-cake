@@ -1,4 +1,7 @@
 class OrdersController < ApplicationController
+  
+  before_action :authenticate_customer!
+  
   def index
   end
 
@@ -9,6 +12,7 @@ class OrdersController < ApplicationController
   end
 
   def new
+    @oder = Oder
   end
 
   def check
