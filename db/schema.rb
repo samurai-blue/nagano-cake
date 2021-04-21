@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 2021_04_20_044455) do
     t.datetime "updated_at", null: false
   end
 
+
   create_table "items", force: :cascade do |t|
     t.text "name"
     t.string "image_id"
@@ -82,10 +83,29 @@ ActiveRecord::Schema.define(version: 2021_04_20_044455) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "customer_id"
+    t.string "postal_code"
+    t.text "address"
+    t.string "name"
+    t.integer "shipping_cost"
+    t.integer "total_payment"
+    t.integer "payment_method"
+    t.integer "order_status"
+
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
+  create_table "shippings", force: :cascade do |t|
+    t.integer "customer_id"
+    t.string "postal_code"
+    t.text "address"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
 
 end
