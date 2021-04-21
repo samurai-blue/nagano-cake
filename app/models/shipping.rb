@@ -1,7 +1,8 @@
 class Shipping < ApplicationRecord
 
-  validates :postal_code,length:{ minimum: 7, maximum: 7}
-  validates :address, presence: true
-  validates :name,length:{ minimum: 2, maximum: 20 }  
-    
+  belongs_to :customer
+
+  validates :address, :postal_code, :name, presence: true
+  validates :postal_code,length:{ minimum: 7, maximum: 7}, numericality: { only_integer: true }
+
 end
