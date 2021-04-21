@@ -45,6 +45,9 @@ ActiveRecord::Schema.define(version: 2021_04_20_044455) do
   end
 
 
+  create_table "genres", force: :cascade do |t|
+
+
   create_table "orders", force: :cascade do |t|
     t.integer "customer_id"
     t.string "postal_code"
@@ -61,6 +64,7 @@ ActiveRecord::Schema.define(version: 2021_04_20_044455) do
   create_table "shippings", force: :cascade do |t|
     t.string "postal_code"
     t.text "address"
+
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -76,6 +80,28 @@ ActiveRecord::Schema.define(version: 2021_04_20_044455) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "is_saled"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "customer_id"
+    t.string "postal_code"
+    t.text "address"
+    t.string "name"
+    t.integer "shipping_cost"
+    t.integer "total_payment"
+    t.integer "payment_method"
+    t.integer "order_status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "shippings", force: :cascade do |t|
+    t.integer "customer_id"
+    t.string "postal_code"
+    t.text "address"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

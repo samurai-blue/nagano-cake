@@ -1,5 +1,6 @@
 class CustomersController < ApplicationController
 
+
   def index
     @customer = current_user
     @customers = Customer.all
