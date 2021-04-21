@@ -1,0 +1,62 @@
+<!--<h1>Shippings#index</h1>-->
+<!--<p>Find me in app/views/shippings/index.html.erb</p>-->
+<% if @shipping.errors.any? %>
+  <%= @shipping.errors.count %>件のエラーが発生しました
+  <% @shipping.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+
+<h2>配送先登録・一覧</h2>
+<br>
+<h3>新規登録</h3>
+
+<table class="table">
+  <%= form_with model: @shipping , url:shippings_path, local:true do |f| %>
+  <div class= "shipping col-xs-10">
+    <tr class ="form-group col-xs-12">
+      <th><%= f.label :"郵便番号" %></th>
+      <td><%= f.text_field :postal_code %></td>
+    </tr>
+
+    <tr class ="form-group col-xs-12">
+      <th><%= f.label :"住所" %></th>
+      <td><%= f.text_field :address %></td>
+    </tr>
+
+    <tr class ="form-group col-xs-12">
+      <th><%= f.label :宛名 %></th>
+      <td><%= f.text_field :name %></td>
+    </tr>
+
+    <tr class ="form-group">
+      <th><%= f.submit '新規登録', class: "col-xs-2 pull-right btn-lg btn-success" %></th>
+    </tr>
+   <% end %>
+  </div>
+</table>
+
+
+<br>
+<table class = "table">
+  <thead class = "thead-light">
+    <tr>
+      <th>郵便番号</th>
+      <th>住所</th>
+      <th>宛名</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @shippings.each do |shipping| %>
+      <tr>
+        <td><%= shipping.postal_code %></td>
+        <td><%= shipping.address %></td>
+        <td><%= shipping.name %></td>
+        <td><%= link_to "EDIT", edit_shipping_path(shipping.id) %></td>
+        <td><%= link_to "DELETE",shipping_path(shipping.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
