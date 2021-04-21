@@ -1,5 +1,10 @@
 class CustomersController < ApplicationController
 
+  def index
+    @customer = current_user
+    @customers = Customer.all
+  end
+  
   def show
     @customer = current_customer
   end

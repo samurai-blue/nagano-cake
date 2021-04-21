@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 2021_04_20_044455) do
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
 
+
   create_table "orders", force: :cascade do |t|
     t.integer "customer_id"
     t.string "postal_code"
@@ -106,6 +107,5 @@ ActiveRecord::Schema.define(version: 2021_04_20_044455) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
 
 end
