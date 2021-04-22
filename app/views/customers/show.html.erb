@@ -1,13 +1,13 @@
 
 <div class = "container">
-  
+
   <div class='row'>
     <div class="col-8">
       <h2 class="head-line text-center title_h2">マイページ</h2>
       <p><strong class="information-link"><i class="far fa-user"></i>登録情報</strong>
         <%= link_to " 編集する", edit_customer_path, class: "glyphicon glyphicon-pencil btn btn-success" %>
       </p>
-  
+
       <table class="table table-bordered" >
         <tbody>
           <tr>
@@ -36,17 +36,17 @@
           </tr>
         </tbody>
       </table>
-  
+
         <div class='mypage-bottom'>
           <P><strong class="shipping-link">配送先</strong>
-          <%=link_to '一覧を見る', shippings_path, class: "glyphicon glyphicon-folder-open btn btn-info" %>
+          <%=link_to '一覧を見る', customer_shippings_path, class: "glyphicon glyphicon-folder-open btn btn-info" %>
           </p>
           <p><strong class="order-link">注文履歴</strong>
-          <button type="submit" class="btn btn-primary">一覧を見る</button>
+          <%=link_to '一覧を見る', orders_path, class: "glyphicon glyphicon-folder-open btn btn-info" %>
           </p>
         </div>
     </div>
 
   </div>
-  
+
 </div>

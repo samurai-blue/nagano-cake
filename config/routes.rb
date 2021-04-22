@@ -23,6 +23,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :cart_items,only: [:index,:update,:create,:destroy] do
+    collection do
+      delete '/' => 'cart_items#all_destroy'
+    end
+  end
+
   resource :customer, only: [:show,:edit,:update] do
     collection do
       get 'out'
@@ -34,8 +40,10 @@ Rails.application.routes.draw do
   resources :genres
   resources :items
 
+  root "customer/items#top"
+
   namespace :admin do
-    resources :items,only: [:index, :show, :edit, :update]
+    resources :items,only: [:index, :create, :show, :edit, :update]
   end
 
 end
