@@ -28,8 +28,8 @@
               <% if customer_signed_in? %>
                 <li class ="nav-item">ようこそ<%= current_customer.last_name %><%= current_customer.first_name %>さん</li>
                 <li class ="nav-item"><%= link_to "マイページ", customer_path %></li>
-                <li class ="nav-item"><%= link_to "商品一覧", orders_index_path %></li>
-                <li class ="nav-item"><%= link_to "カート", orders_index_path %></li>
+                <li class ="nav-item"><%= link_to "商品一覧", orders_path %></li>
+                <li class ="nav-item"><%= link_to "カート", orders_path %></li>
                 <li class ="nav-item"><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></li>
 
               <% else %>
