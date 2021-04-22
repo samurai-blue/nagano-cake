@@ -37,5 +37,3 @@ def item_params
 end
 
 end
-
-end

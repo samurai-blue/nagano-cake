@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :customers,only: [:index,:show,:edit,:update]
+    resources :items,only: [:new, :index, :show, :edit, :update]
   end
 
 
@@ -33,9 +34,5 @@ Rails.application.routes.draw do
 
   resources :genres
   resources :items
-
-  namespace :admin do
-    resources :items,only: [:index, :show, :edit, :update]
-  end
-
+  resources :cart_items
 end

@@ -1,34 +1,57 @@
-<div class="row">
-    <div class="col-xs-12">
-        <h2 class="head-line title_h2 text-center">商品新規登録</h2>
-        <%= form_with model:@item, local:true do |f| %>
-            <div class="col-xs-4 col-xs-offset-1">
+<div class="container">
+<div class="row" style= "width: 80%; margin: 20px auto;">
 
-    <div class="col-xs-6">
-    <div class="actions col-xs-7">
-        <td>商品画像 <%= f.attachment_field :image %></td>
-        
-        <td>商品名 <%= f.text_field :name %></td>
+    <!--div class="col-lg-10 offset-lg-1"-->
+        <%= form_with model:@item, local:true, url:admin_item_path do |f| %>
+        <div class="form-horizontal row justify-content-center">
+
+            <!--h2 class="head-line title_h2 text-center">商品新規登録</h2-->
+        <!--div class="form-group row justify-content-center"-->
+
+            <h4 style="margin-bottom: 20px; text-left: 2px solid #2D6F4C; padding: 10px;">商品新規登録</h4>
+            <div class="form-group">
+                <%= f.label :商品画像 %>
+                <%=f.attachment_field :image %>
+            </div>
+
+            <div class="form-group">
+                <%= f.label :商品名 %>
+                <%= f.text_field :nam, placeholder: "商品名" %>
+            </div>
+
+            <div class="form-group">
+                <%= f.label :商品説明 %>
+                <%= f.text_field :description, placeholder: "ここに商品説明を記入してください" %>
+            </div>
+
+            <div class="form-group">
+                <%= f.label :ジャンル %>
+                <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "-- 選択して下さい --" %>
+            </div>
+
+            <div class="form-group">
+                <%= f.label :税抜価格%>
+                <%= f.text_field :price, placeholder: "1,000" %>
+            </div>
+
+            <div class="form-group">
+                 <!--p class="control-label">販売ステータス</p-->
+                <%= f.label :販売ステータス%>
+                <div class="radio-inline">
+                    <%= f.radio_button :is_saled, true  %>
+                    <%= f.label(:is_saled, "販売中", value: "販売中")  %>
+                    <%= f.radio_button :is_saled, false %>
+                    <%= f.label(:is_saled, "販売停止", value: "販売停止")  %>
+                </div>
+            </div>
+
+                <%= f.submit '新規登録',class: "btn btn-primary btn-lg float-right" %>
+        </div>
+        <% end %>
+    <!--div class ="col-lg-1" style=".bg-secondary"></div-->
 
 
-        <P>商品説明</P>
-            <%= f.text_field :description %>
-        <p>ジャンル</p>
-            <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %>
-
-        <P>税抜価格</P>
-            <%= f.text_field :price %>
-
-        <P>販売ステータス</P>
-            <%= f.radio_button :is_saled, true %><P>販売中</P>
-            <%= f.radio_button :is_saled, false %><P>販売停止中</P>
-
-            <%= f.submit '新規登録' %>
-    </div>
-    </div>
-
-    </div>
 </div>
+</div>
+<!--div class="col-xs-offset-2"></div>--
 
-
-<% end %>
