@@ -1,6 +1,5 @@
-class ItemsController < ApplicationController
 
-#root to "customers/items#top"
+class Customer::ItemsController < ApplicationController
 
 def top
 end
