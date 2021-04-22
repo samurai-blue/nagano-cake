@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   resources :items
 
   namespace :admin do
-    resources :items,only: [:index, :show, :edit, :update]
+    resources :items,only: [:index, :show, :edit, :update, :new, :create ]
   end
 
 end
