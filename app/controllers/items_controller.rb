@@ -1,4 +1,9 @@
-class CustomerItemsController < ApplicationController
+class ItemsController < ApplicationController
+
+#root to "customers/items#top"
+
+def top
+end
 
 def index
   @items = Item.all
@@ -27,7 +32,7 @@ end
 def update
   item = Item.find(params[:id])
   item.update(item_params)
-  redirect_to item_path(item)
+  redirect_to items_path(item)
 end
 
 private
