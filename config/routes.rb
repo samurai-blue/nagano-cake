@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   resources :items
   namespace :admin do
     resources :items,only: [:index, :show, :edit, :update]
+    resources :genres,only: [:index, :edit, :update]
   end
 
   resources :shippings, only: [:index, :create, :destroy, :update, :edit]
