@@ -1,0 +1,13 @@
+<div class ="container">
+  <div class = "low">
+    <div class = "col-8">
+      <%= render "customers/_edit_form" %>
+      <!--編集フォーム-->
+      <div class="actions-8">
+        <%= f.submit "編集内容を保存する", class: "btn btn-primary save col-xs-6" %>
+        <%= link_to "退会する", out_customer_path, class: "glyphicon glyphicon-tint btn btn-danger" %>
+      </div>
+        <%= link_to "編集内容を保存", customer_path %>
+    </div>
+  </div>
+</div>

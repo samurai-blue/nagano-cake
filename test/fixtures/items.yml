@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyText
+  image_id: MyString
+  description: MyText
+  price: 1
+  items_genre_id: 1
+  created_at: 2021-04-18 03:12:02
+  updated_at: 2021-04-18 03:12:02
+  is_saled: false
+
+two:
+  name: MyText
+  image_id: MyString
+  description: MyText
+  price: 1
+  items_genre_id: 1
+  created_at: 2021-04-18 03:12:02
+  updated_at: 2021-04-18 03:12:02
+  is_saled: false
