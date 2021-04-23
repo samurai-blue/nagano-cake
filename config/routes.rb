@@ -38,17 +38,10 @@ Rails.application.routes.draw do
     end
     resources :shippings, only: [:index, :create, :destroy, :update, :edit]
   end
-  
+
   resources :items
-<<<<<<< HEAD
-  namespace :admin do
-    resources :items,only: [:index, :show, :edit, :update]
-    resources :genres,only: [:index, :edit, :update]
-  end
 
   resources :shippings, only: [:index, :create, :destroy, :update, :edit]
-=======
->>>>>>> origin/develop
 
   root "customer/items#top"
 

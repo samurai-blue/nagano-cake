@@ -1,4 +1,4 @@
-class Customer::ItemsController < ApplicationController
+class ItemsController < ApplicationController
 
 def top
 end
