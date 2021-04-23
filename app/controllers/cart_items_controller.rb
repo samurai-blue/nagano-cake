@@ -1,6 +1,6 @@
 class CartItemsController < ApplicationController
   before_action :authenticate_customer!
-  #before_action :set_cart_item, only, [:create, :update, :destroy]
+  before_action :set_cart_item, only, [:create, :update, :destroy]
 
   # カート内アイテムの表示
   def index
@@ -58,7 +58,11 @@ class CartItemsController < ApplicationController
    private
 
    def item_params
-       params.require(:cart_item).permit(:customer_id, :item_id, :quantity, :price)
+    params.require(:item).permit(:customer_id, :item_id, :quantity, :price)
+   end
+
+   def set_cart_item
+    @cart_item = CartItem.find(params[:id])
    end
 
 end
