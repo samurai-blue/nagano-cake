@@ -1,27 +1,39 @@
-<h1>商品編集</h1>
-
-<%= form_with model:@item, local: true do |f| %>
-
-
-<p>商品画像</p>
-<%= f.attachment_field :image %>
-
-<p>商品名</p>
-<%= f.text_field :name %>
-
-<p>商品説明</p>
-<%= f.text_field :description %>
-
-<p>ジャンル</p>
-<%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %>
-
-<P>税抜価格</P>
-<%= f.text_field :price %>
-
-<p>販売ステータス</p>
-<%= f.radio_button :is_saled, true %><P>販売中</P>
-<%= f.radio_button :is_saled, false %><P>販売停止中</P>
-
-<%= f.submit '変更を保存' %>
-
-<% end %>
+<div class = "container">
+  <div class = "row">
+    <h1>商品編集</h1>
+  </div>
+  <div class = "row">
+    <%= form_with model:@item, local: true do |f| %>
+      <table class ="table table-borderless">
+        <tr>
+          <th>商品画像</th>
+          <td><%= f.attachment_field :image %></td>
+        </tr>
+        <tr>
+          <th><p>商品名</p></th>
+          <td><%= f.text_field :name %></td>
+        </tr>
+        <tr>
+          <th><p>商品説明</p></th>
+          <td><%= f.text_field :description %></td>
+        </tr>
+        <tr>
+          <th>ジャンル</th>
+          <td><%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %></td>
+        </tr>
+        <tr>
+          <th>税抜価格</th>
+          <td><%= f.text_field :price %></td>
+        </tr>
+        <tr>
+          <th>販売ステータス</th>
+          <td>
+            <%= f.radio_button :is_saled, true %>販売中
+            <%= f.radio_button :is_saled, false %>販売停止中
+          </td>
+        </tr>
+      </table>
+      <%= f.submit '変更を保存' %>
+    <% end %>
+  </div>
+</div>

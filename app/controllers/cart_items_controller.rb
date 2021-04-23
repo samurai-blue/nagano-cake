@@ -20,12 +20,14 @@ class CartItemsController < ApplicationController
    end
    
    def update
+     
    end
    
    def all_destroy
    end
    
    def destroy
+       
    end
    
    private
