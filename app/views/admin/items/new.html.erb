@@ -1,17 +1,14 @@
 <div class="container">
-<div class="row" style= "width: 80%; margin: 20px auto;">
+<div class="row" style="margin: 20px auto;">
 
-    <!--div class="col-lg-10 offset-lg-1"-->
-        <%= form_with model:@item, local:true, url: admin_items_path do |f| %>
-        <div class="form-horizontal row justify-content-center">
-
-            <!--h2 class="head-line title_h2 text-center">商品新規登録</h2-->
-        <!--div class="form-group row justify-content-center"-->
-
-            <h4 style="margin-bottom: 20px; text-left: 2px solid #2D6F4C; padding: 10px;">商品新規登録</h4>
+    <div class="form-horizontal">
+    <%= form_with model:@item, local:true, url: admin_items_path do |f| %>
+        
+            <h4 style="margin-bottom: 20px; text-left; padding: 10px;">商品新規登録</h4>   
+        
             <div class="form-group">
                 <%= f.label :商品画像 %>
-                <%=f.attachment_field :image %>
+                <%= f.attachment_field :image  %>
             </div>
 
             <div class="form-group">
@@ -35,7 +32,7 @@
             </div>
 
             <div class="form-group">
-                 <!--p class="control-label">販売ステータス</p-->
+                 p class="control-label">販売ステータス</p
                 <%= f.label :販売ステータス%>
                 <div class="radio-inline">
                     <%= f.radio_button :is_saled, true  %>
@@ -45,13 +42,13 @@
                 </div>
             </div>
 
-                <%= f.submit '新規登録',class: "btn btn-primary btn-lg float-right" %>
+            <%= f.submit '新規登録',class: "btn btn-primary btn-lg float-right" %>
         </div>
         <% end %>
-    <!--div class ="col-lg-1" style=".bg-secondary"></div-->
+    div class ="col-lg-1" style=".bg-secondary"></div
 
 
 </div>
 </div>
-<!--div class="col-xs-offset-2"></div>--
+div class="col-xs-offset-2"></div>--
 
