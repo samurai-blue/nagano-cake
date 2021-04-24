@@ -1,12 +1,14 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
-
+  add_flash_types :success, :danger, :info
 
   protected
 
   def after_sign_in_path_for(resource)
     if customer_signed_in?
        customer_path(resource)
+    elsif admin_signed_in?
+          admin__path
     end
   end
 
