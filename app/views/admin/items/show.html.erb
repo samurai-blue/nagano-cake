@@ -1,26 +1,30 @@
-<h1>商品詳細</h1>
-
-
-<%= attachment_image_tag @item, :image %>
-<tbody>
-    <tr>
-    <th>商品名</th>
-    <%= @item.name %>
-     </tr>
-
-    <tr>
-    <th>商品説明</th>
-    <%= @item.description %>
-    </tr>
-
-    <th>ジャンル</th>
-    <%= @item.genre.name %>
-
-    <th>税込価格</th>
-    <%= @item.price %>
-
-    <th>販売ステース</th>
-    <%= @item.status %>
-
-    <%= link_to '編集する', edit_admin_item_path(@item.id) %>
-</tbody>
+<div class="col-lg-10 space">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 offset-lg-2">
+        <%= attachment_image_tag(@item, :image, :fill, 560, 420, fallback: "no_img.jpg") %>
+      </div>
+      <div class="col-lg-4">
+        <h3>
+          <%= @item.name %>
+        </h3>
+        <h4>商品説明</h4>
+        <%= @item.description %>
+        <h4>
+          <%= price_include_tax(@item.price) %>
+        </h4>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container">
+    <div class="w-50 offset-lg-6">
+      <%= form_with(model: [@item, @cart], local: true, url: {controller: 'cart_items', action: 'create'}) do |f| %>
+        <%= f.label :ご購入個数 %>
+        <%= f.number_field :quantity, value: 1 ,min:1, max:99 %>個
+        <%= f.hidden_field :item_id, value: @item.id  %>
+      <%= f.submit "カートに入れる", class: "btn btn-danger" %>
+      <% end %>
+    </div>
+  </div>
+</div>

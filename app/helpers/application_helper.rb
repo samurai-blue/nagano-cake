@@ -8,4 +8,14 @@ module ApplicationHelper
     end
   end
   
+  def price_include_tax(price)
+    price = price * 1.08
+    "#{price.round}円"
+  end
+  
+  # def price_include_tax(price)
+  #   price = price * 1.08
+  #   "#{price.floor}円"
+  # end
+  
 end

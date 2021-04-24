@@ -1,0 +1,13 @@
+<div class="col-lg-4 item-box space">
+  <%= link_to item_path(item) do %>
+    <div class="row">
+      <h4><%= item.name %></h4>
+    </div>
+    <div class="row">
+      <%= attachment_image_tag(item, :image, :fill, 220, 180, fallback:  'no_img.jpg') %>
+    </div>
+  <% end %>
+  <div class="row">
+    <h4><%= price_include_tax(item.price) %></h4>
+  </div>
+</div>
