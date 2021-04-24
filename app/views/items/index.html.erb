@@ -1,5 +1,7 @@
-<h2>商品一覧</h2>
 <div class = "container">
+  <div class ="row">
+    <h2>商品一覧</h2>
+  </div>
   <div class = "row">
     <% @items.each do |item| %>
       <div class = "col-3">
@@ -14,7 +16,7 @@
                             <!--attachment_image_tag モデル名, :image, :fill, 横幅の数値(例: 100), 縦幅の数値, format: '拡張子名(例: jpg)' -->
                             <!--< %= attachment_image_tag post_image, :image %>-->
         <%= link_to item.name,item_path(item.id) %><br>
-        <%= item.price %><br>
+        <P>¥<%= item.price %></P>
       </div>
     <% end %>
   </div>
