@@ -40,6 +40,7 @@ class CartItemsController < ApplicationController
       end
          flash[:warning] = "入力内容を確認してください"
          redirect_to cart_items_path
+
    end
 
 
