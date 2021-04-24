@@ -1,27 +1,16 @@
-<h1>商品詳細</h1>
+<div class = "container">
+  <div class ="row">
+    <h1>商品詳細</h1>   
+  </div>
+  <div class ="row">
+    <div class = "col-auto">
+      <%= attachment_image_tag @item, :image %>
+    </div>
+    <div class = "col-auto">
+      <h2><%= @item.name %></h2>
+      <h4><%= @item.description %></h4>
+      <h4>¥<%= @item.price %>円（税込み）</h4>
+    </div>
+  </div>
+</div>
 
-<%= attachment_image_tag @item, :image %>
-<tbody>
-    <tr>
-    <th>商品名</th>
-    <%= @item.name %>
-     </tr>
-
-    <tr>
-    <th>商品説明</th>
-    <%= @item.description %>
-    </tr>
-
-    <!--会員側のページには不要-->
-    <!--<th>ジャンル</th>-->
-    <!--< %= @item.genre_id.genre_name %>-->
-   
-
-    <th>税込価格</th>
-    <%= @item.price %>
-
-    <th>販売ステータス</th>
-    <%= @item.status %>
-
-    <%= link_to '編集する', edit_item_path(@item) %>
-</tbody>
