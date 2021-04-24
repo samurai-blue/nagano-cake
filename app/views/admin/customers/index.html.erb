@@ -14,7 +14,7 @@
       <tbody>
         <% @customers.each do |customer| %>
           <tr>
-            <td class="col-xs-1" >
+            <td class="info col-xs-1" >
               <%= customer.id %>
             </td>
             <td>
@@ -23,7 +23,7 @@
               <% end %>
             </td>
             <td><%= customer.email %></td>
-            <td>
+            <td class="col-xs-2">
               <% if customer.is_valid == true%>
                 <p>退会済み</p>
               <% else %>
@@ -35,7 +35,7 @@
       </tbody>
     </table>
   </div>
-    <!--div class= "text-center"><= paginate(@customers) %></div-->
+    <div class= "text-center" ><%= paginate(@customers) %></div>
 </div>
 </div>
 

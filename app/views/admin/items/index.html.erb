@@ -1,7 +1,10 @@
-<h2 class="head-line title_h2 text-center admin_product_index">商品一覧</h2>
+<div class="container">
+<div class="row" style= "margin: 20px auto;">
+<div>
+  <h2 class="title_h2 text-center">商品一覧</h2>
+</div>
 
-
-<table class = "table table-hover table-inverse">
+<table class = "table table-hover">
   <thead>
     <tr>
       <th>商品ID</th>
@@ -15,7 +18,7 @@
     <% @items.each do |item| %>
     <tr>
       <th><%= item.id %></th>
-      <th><%= link_to item_path(item) do%><%= item.name %> <% end %></th>
+      <th><%= link_to admin_item_path(item) do%><%= item.name %> <% end %></th>
       <th><%= item.price %></th>
       <th><%= item.genre.name %></th>
       <% if item.is_saled %>

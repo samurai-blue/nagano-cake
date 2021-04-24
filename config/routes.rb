@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :customers,only: [:index,:show,:edit,:update]
+    resources :items,only: [:index, :show, :edit, :update, :new, :create ]
+    resources :genres,only: [:index, :create, :edit, :update]
   end
 
 
@@ -36,17 +38,9 @@ Rails.application.routes.draw do
     end
     resources :shippings, only: [:index, :create, :destroy, :update, :edit]
   end
-
-  namespace :admin do
-    resources :genres,only: [:index, :create, :edit, :update]
-  end
   
   resources :items
 
   root "customer/items#top"
-
-  namespace :admin do
-    resources :items,only: [:index, :show, :edit, :update, :new, :create ]
-  end
 
 end

@@ -1,5 +1,4 @@
 class CartItemsController < ApplicationController
-  
   befoer_action :authenticate_customer!
   
   # カート内アイテムの表示
@@ -30,6 +29,5 @@ class CartItemsController < ApplicationController
    end
    
    private
-   
    
 end
