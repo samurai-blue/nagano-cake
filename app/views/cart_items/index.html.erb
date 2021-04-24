@@ -1,48 +1,69 @@
-<div class="container">
-<h2 class="head-line title_h2 text-center">ショッピングカート</h2>
-<div class="row">
-  
-  <!-- 多分位置がおかしいかもです -->
-  <div>
-    <%= link_to root_path, method: :delete do %>
-		  <span class="btn btn-danger float-right">カートを空にする</span>
-	  <% end %>
-	<!-- ^^^^^^^^ -->  
-  </div>
-  
-  <div class="col-xs-10 col-xs-offset-1">
-    <table class="table-hover table-bordered table-condensed">
-      <thead>
-        <tr>
-          <th>商品名</th>
-          <th>単価(税込み)</th>
-          <th>数量</th>
-          <th>小計</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-          <% @cart_item.each do |ffff| %>
-            <tr>
-                <td>
-                  <%= attachment_image_tag item.product, :image, :fill, 50, 50 %>
-                  <%= cart_item.item.name %>
-                </td>
-                <td><%= cart_item.item.price %></td>
-                <td>
-                  <%= number_field_tag :quantity[item.id], :in => 1...10 %>
-                  <!--ナンバーフィールドタグを使うっぽいけど使い方が。。。 -->
-                </td>
-                <td>
-                  <!-- 数量の合計だしたい -->
-		            </td>
-		            <td><%= link_to '削除する', cart_item_path(ffff), method: :delete %></td>
-            </tr>
-          <% end %>
-      </tbody>
-    </table>
-  </div>
-    <!--div class= "text-center"><= paginate(@customers) %></div-->
+<div class="cart_container" style="width:90%; margin: 20px auto; position:relative;">
+
+<strong style="font-size:18px;">
+	<img src="/assets/cart_icon.jpg" style="display:inline-block; height: 25px;">
+	ショッピングカート
+</strong>
+
+<div class="row" style="width:100%; height:20px;"></div>
+
+<div style="position:absolute; top: 30px; right: 0;">
+	<%= link_to cart_items_path, method: :delete do %>
+		<span class="btn btn-danger">カートを空にする</span>
+	<% end %>
 </div>
+
+<%= form_for cart_items_path, method: :patch do |f| %>
+<span style="color:#266846;">表示されている価格は全て税込です。</span>
+<table class="table table-bordered">
+	<tr style="background:#dad7d7; border: 1px solid #fff;">
+		<th>商品名</th>
+		<th>単価</th>
+		<th>数量</th>
+		<th>小計</th>
+		<th></th>
+	</tr>
+ <% @cart_items.each do |item| %>
+	<tr>
+		<td>
+			<%= attachment_image_tag item.item, :image, :fill, 50, 50 %>
+			<%= item.item.name %>
+		</td>
+		<td>
+ 			<%= hidden_field_tag :product_price, item.item.price %>
+			< %= addTax(item.item.price) %>
+		</td>
+		<td>
+			<%= hidden_field_tag "item_id[#{item.id}]", item.item_id %>
+			<%= number_field_tag "quantity[#{item.id}]", item.quantity, in: 1..10 %>
+		</td>
+		<td>
+			<%= hidden_field_tag "price[#{item.id}]", item.price %>
+			< %= addTax(item.price) %>
+		</td>
+		<td><%= link_to '削除する', cart_item_path(item), method: :delete %></td>
+	</tr>
+ <% end %>
+</table>
+
+<div class="row">
+	<div class="col-xs-4">
+		<%= link_to root_path do %>
+			<span class="btn btn-info glyphicon glyphicon-chevron-left">買い物を続ける</span>
+		<% end %>
+	</div>
+	<div class="col-xs-4 pull-right">
+		<table class="table table-striped">
+			<tr style="background:#dad7d7; border: 1px solid #fff;"><th>合計金額</th></tr>
+			<tr><td>< %= addTax(@total_price) %></td></tr>
+		</table>
+
+		<div class="pull-right">
+			<%= f.submit '再計算する', class:"btn btn-default", data: {toggle:"tooltip", placement:"left"}, title:"数量を変更したらクリック" %>
+		</div>
+<% end %>
+
+	</div>
+
 </div>
 
