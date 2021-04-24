@@ -4,6 +4,7 @@ class Customer < ApplicationRecord
 
   has_many :shippings, dependent: :destroy
   has_many :oders
+  has_many :cart_items, dependent: :destroy
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
