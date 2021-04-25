@@ -1,6 +1,7 @@
 class CartItemsController < ApplicationController
   before_action :authenticate_customer!
-  before_action :set_cart_item, only, [:show, :update, :destroy, :edit]
+  before_action :set_cart_item, only: [:index, :update, :destroy, :edit]
+  # before_action :処理させたいメソッド名, only: [:アクション1,:アクション2]
   before_action :set_customer
 
   # カート内アイテムの表示
@@ -12,7 +13,7 @@ class CartItemsController < ApplicationController
    # アイテムの追加
   def create
     @cart_item = CartItem.new(item_params)
-    @current_item = CartItem.find_by(item_id: @cart_item.item_id,customer_id: @cart_item.customer_id)
+    @current_item = CartItem.find_by(item_id: @cart_item.item_id, customer_id: @cart_item.customer_id)
        
       # @cart_item.customer_id = current_customer.id
         #税抜の小計価格を設定
@@ -20,7 +21,7 @@ class CartItemsController < ApplicationController
       
       # @cart_item.save
       # redirect_to cart_items_path
-    if @cart_item.blank?
+    if @cart_item.nil?
       if @cart_item.save
         flash[:notice] = '商品が追加されました。'
         redirect_to cart_items_path

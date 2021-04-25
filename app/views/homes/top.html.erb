@@ -15,27 +15,17 @@
   <!--</div>-->
   <div class ="row">
     <h2>新着商品</h2>
-      <% @items.each do |item| %>
-      <table class = "table">
-        <tbody>
-          <tr>
-            <td><%= attachment_image_tag item, :image, size:'200x200' %></td>
-          </tr>
-        </tbody>
-      </table>
-      <table class = "table">
-        <tbody>
-          <tr>
-            <th><%= item.name %></th>
-            <th><%= item.price %></th>
-          </tr>
-        </tbody>
-      </table>
-      <% end %>
-          </tr>
-        </tbody>
-      </table>
+  <div class ="row">
+    <% @items.each do |item| %>
+      <div class="col-3">
+        <div class ="row"><%= attachment_image_tag(item, :image, :fill, 220, 180, fallback: 'no_image.jpg') %></div>
+        <div class ="row"><%= item.name %></div>
+        <div class ="row"><%= item.price %>円</div>
+      </div>
+    <% end %>
   </div>
+  <div class ="row float-right">
+    <%= link_to "すべての商品を見る", items_path %>
   <!--<div class ="row">-->
   <div class="float-right">
     <%= link_to "すべての商品を見る>", customer_shippings_path %>
