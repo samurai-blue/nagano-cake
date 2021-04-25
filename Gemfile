@@ -70,3 +70,9 @@ gem 'jquery-rails'
 gem 'kaminari','~> 1.2.1'
 gem 'bootstrap', '~> 4.5'
 gem 'font-awesome-sass', '~> 5.13'
+
+
+# 環境変数の管理
+gem 'dotenv-rails', require: 'dotenv/rails-now'
+# デバッグ
+gem 'pry-rails'
