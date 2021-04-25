@@ -1,26 +1,19 @@
 <div class="col-lg-10 space">
   <div class="container">
-  <h2>
-    <span style="display: inline-block;">全商品一覧</span>
-    <span style="display: inline-block;">（<%= @items.count %>種）</span>
-  </h2>
-</div>
+    <h2>
+      <span style="display: inline-block;">全商品一覧</span>
+      <span style="display: inline-block;">（<%= @items.count %>種）</span>
+    </h2>
+  </div>
   <div class="container">
     <div class="row">
     <% @items.each do |item| %>
       <%= render 'items/box', item: item %>
     <% end %>
-  </div>
+    </div>
   </div>
   <%= paginate @items %>
 </div>
-
-
-
-
-
-
-
 
 
 
