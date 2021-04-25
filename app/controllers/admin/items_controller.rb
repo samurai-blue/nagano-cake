@@ -3,7 +3,7 @@ class Admin::ItemsController < ApplicationController
   def index
     @items = Item.all
     @item = Item.new
-    @items = Item.all.page(params[:page]).per(2)
+    @items = Item.all.page(params[:page]).per(8)
   end
 
   def show
@@ -16,7 +16,7 @@ class Admin::ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    @item.save
+    @item.save!
     redirect_to admin_items_path
   end
 
@@ -27,7 +27,7 @@ class Admin::ItemsController < ApplicationController
   def update
     item = Item.find(params[:id])
     item.update(item_params)
-    redirect_to item_path(item)
+    redirect_to admin_items_path
   end
 
   private
