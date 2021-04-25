@@ -1,5 +1,9 @@
 class CustomersController < ApplicationController
 
+ before_action :authenticate_customer!
+ 
+
+
 
   def index
     @customer = current_user
@@ -20,6 +24,7 @@ class CustomersController < ApplicationController
        flash[:success] = "登録情報を変更しました"
        redirect_to customer_path
     else
+      flash[:danger] = '更新失敗'
        render :edit and return
     end
   end
@@ -36,6 +41,8 @@ class CustomersController < ApplicationController
     redirect_to root_path
   end
 
+  private
+  
   def customer_params
   	params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :postal_code, :address, :telephone_number)
   end

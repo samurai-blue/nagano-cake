@@ -15,31 +15,50 @@
 <!--          管理者画面のヘッダーは内容が異なるので別に用意が必要そうです        -->
 
    <header>
-      <nav class = "navbar navbar-expand-lg  navbar-dark bg-success">
+      <nav class = "navbar navbar-expand-lg navbar-dark bg-success">
         <div class = "container">
           <%= link_to "[logo]",root_path, class: "navbar-brand" %>         <!--リンク先を変える-->
-
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-
           <div class ="collapse navbar-collapse">       <!--classの中にid必要？-->
-            <ul class = "navbar-nav">
+            <ul class = "navbar-nav ml-auto">
               <% if customer_signed_in? %>
-                <li class ="nav-item">ようこそ<%= current_customer.last_name %><%= current_customer.first_name %>さん</li>
-                <li class ="nav-item"><%= link_to "マイページ", customer_path %></li>
-                <li class ="nav-item"><%= link_to "商品一覧", items_path %></li>
-                <li class ="nav-item"><%= link_to "カート", cart_items_path %></li>
-                <li class ="nav-item"><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></li>
-
+                <li class ="nav-item  m-2 ">ようこそ<%= current_customer.last_name %><%= current_customer.first_name %>さん</li>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                  <button type="button" class="btn btn-light mx-2 "><%= link_to "マイページ", customer_path %></button>
+                  <button type="button" class="btn btn-light mx-2 "><%= link_to "商品一覧", items_path %></button>
+                  <button type="button" class="btn btn-light mx-2 "><%= link_to "カート", orders_path %></button>
+                  <button type="button" class="btn btn-light mx-2 "><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></button>
+                </div>
+              <% elsif admin_signed_in? %>
+                <li class ="nav-item m-2 ">管理者</li>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                  <button type="button" class="btn btn-light mx-2 "><%= link_to "会員一覧", admin_customers_path %></button>
+                  <button type="button" class="btn btn-light mx-2 "><%= link_to "商品一覧", admin_items_path %></button>
+                  <button type="button" class="btn btn-light mx-2 "><%= link_to "注文履歴一覧", new_customer_registration_path %></button>
+                  <button type="button" class="btn btn-light mx-2 "><%= link_to "ジャンル一覧", admin_genres_path %></button>
+                  <button type="button" class="btn btn-light mx-2 "><%= link_to "ログアウト",  destroy_admin_session_path %></button>
+                </div>
               <% else %>
-                <li class ="nav-item">ようこそゲストさん</li>
-                <li class ="nav-item"><%= link_to "About", homes_about_path %></li>
-                <li class ="nav-item"><%= link_to "ログイン", new_customer_session_path %></li>
-                <li class ="nav-item"><%= link_to "新規登録", new_customer_registration_path %></li>
-
+                <li class ="nav-item m-2 ">ようこそゲストさん</li>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                  <button type="button" class="btn btn-light mx-2 "><%= link_to "About", homes_about_path %></button>
+                  <button type="button" class="btn btn-light mx-2 "><%= link_to "ログイン", new_customer_session_path %></button>
+                  <button type="button" class="btn btn-light mx-2 "><%= link_to "新規登録", new_customer_registration_path %></button>
+                </div>
               <% end %>
             </ul>
+            <!-- メッセージ(customer) or 検索窓(admin) -->
+            <% if admin_signed_in? %>
+              <!-- 検索フォームは仮。あとで機能するものを作って差し替え。 -->
+              <form class="form-inline my-2 my-lg-0">
+              <input type="search" class="form-control mr-sm-2" placeholder="検索..." aria-label="検索...">
+              <button type="submit" class="btn btn-outline-success my-2 my-sm-0">検索
+              </button>
+              </form>
+            <% end %>
+
           </div>
         </div>
       </nav>
@@ -49,6 +68,18 @@
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <%= yield %>
+
+    <div class="container-fluid">
+      <%= render 'layouts/flash', flash: flash %>
+      <div class="row">
+        <%= yield %>
+      </div>
+    </div>
   </body>
+
+  <footer>
+    <div class="container-fluid middle-blue-back">
+      <h3 class="footer-message">nagano cake</h3>
+    </div>
+  </footer>
 </html>
