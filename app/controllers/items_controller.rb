@@ -5,8 +5,8 @@ def top
 end
 
 def index
-  @items = Item.includes(:genre).where(genres: {validity: true}).is_active.page(params[:page]).per(9)
-  # @items = Item.all.page(params[:page]).per(9)
+  # @items = Item.includes(:genre).where(genres: {validity: true}).is_active.page(params[:page]).per(9)
+  @items = Item.all.page(params[:page]).per(9)
 
 end
 

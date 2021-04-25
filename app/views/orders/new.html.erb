@@ -3,54 +3,61 @@
   <!--カートアイテム内が空ではなければ表示
   < % if current_customer.cart_items.present? %>-->
   <!--エラーメッセージあとで追加-->
-  <% form_with model: @order, url:check_orders_path, method: :post, local: true do |f| %>
+  
+  <% form_with model: @order, url:order_check_path, method: :post, local: true do |f| %>
 
-  <div class="form-group">
-    <label><span class="glyphicon glyphicon-stop"></span>お支払い方法</label>
-    <div class="radio">
-      <label><%= f.radio_button :payment_method, "クレジットカード", checked: true %>クレジットカード</label>
+    <!--支払い方法-->
+    <div class="form-group">
+      <label><span class="glyphicon glyphicon-stop"></span>お支払い方法</label>
+      <div class="radio">
+        <label><%= f.radio_button :payment_method, "クレジットカード", checked: true %>クレジットカード</label>
+      </div>
+      <div class="radio">
+        <label><%= f.radio_button :payment_method, "銀行振込" %>銀行振込</label>
+      </div>
     </div>
-    <div class="radio">
-      <label><%= f.radio_button :payment_method, "銀行振込" %>銀行振込</label>
+  
+      <!--届け先ここから-->
+      <!--届け先１：アカウント登録時の住所-->
+    <div class="form-group">
+      <label><span class="glyphicon glyphicon-stop"></span>お届け先</label>
+      <div class="radio">
+        <label><%= f.radio_button :addresses, "residence", checked: true %>ご自身の住所</label>
+        <span>〒<%= current_customer.postal_code %> <%= current_customer.address %></span>
+        <span><%= current_customer.full_name %></span>
+      </div>
+    
+      <!--届け先２：shippingで登録された住所-->
+      <div class="radio">
+        <label><%= f.radio_button :addresses, "shippings" %>登録先住所から選択</label>
+        <!-- order_addressはshippingsのモデルでpostal_code+address+name -->
+        <span><%= f.collection_select(:shipping_id, @shippings, :id, :order_address) %></span>
+      </div>
     </div>
-  </div>
-
-  <div class="form-group">
-    <label><span class="glyphicon glyphicon-stop"></span>お届け先</label>
-    <div class="radio">
-      <label><%= f.radio_button :addresses, "residence", checked: true %>ご自身の住所</label>
-      <span>〒<%= current_customer.postal_code %> <%= current_customer.address %></span>
-      <span><%= current_customer.full_name %></span>
+    
+    <!--届け先３：新規の送り先の場合-->
+    <div class="form-group">
+      <div class="radio">
+        <label><%= f.radio_button :addresses, "new_address" %>新しいお届け先</label>
+      </div>
+      <div class="new_address form-group">
+        <%= f.label :"郵便番号（ハイフン無し）" %>
+        <%= f.text_field :postal_code %>
+      </div>
+      <div class="new_address form-group">
+        <%= f.label :"住所" %>
+        <%= f.text_field :address %>
+      </div>
+      <div class="new_address form-group">
+        <%= f.label :"宛名" %>
+        <%= f.text_field :name %>
+      </div>
     </div>
-
-    <div class="radio">
-      <label><%= f.radio_button :addresses, "shippings" %>登録先住所から選択</label>
-      <!-- order_addressはshippingsのモデルでpostal_code+address+name -->
-      <span><%= f.collection_select(:shipping_id, @shippings, :id, :order_address) %></span>
+    <!--届け先ここまで-->
+  
+    <div class="text-center">
+      <%= f.submit '確認画面へ進む', class: "btn btn-success" %>
     </div>
-  </div>
-
-  <div class="form-group">
-    <div class="radio">
-      <label><%= f.radio_button :addresses, "new_address" %>新しいお届け先</label>
-    </div>
-    <div class="new_address form-group">
-      <%= f.label :"郵便番号（ハイフン無し）" %>
-      <%= f.text_field :postal_code %>
-    </div>
-    <div class="new_address form-group">
-      <%= f.label :"住所" %>
-      <%= f.text_field :address %>
-    </div>
-    <div class="new_address form-group">
-      <%= f.label :"宛名" %>
-      <%= f.text_field :name %>
-    </div>
-  </div>
-
-  <div class="text-center">
-    <%= f.submit '確認画面へ進む', class: "btn btn-success" %>
-  </div>
 
   <% end %>
 <!--

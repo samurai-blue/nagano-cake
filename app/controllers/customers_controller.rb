@@ -3,10 +3,8 @@ class CustomersController < ApplicationController
  before_action :authenticate_customer!
  
 
-
-
   def index
-    @customer = current_user
+    @customer = current_customer
     @customers = Customer.all
   end
   
