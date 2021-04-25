@@ -38,7 +38,8 @@
 
   <div class="container">
     <div class="w-50 offset-lg-6">
-    <%= form_with(model: [@item, @cart], local: true, url: {controller: 'cart_items', action: 'create'}) do |f| %>
+    <%= form_with(model: [@item, @cart], url:cart_items_path,local: true ) do |f| %>
+    <!--< %= form_with(model:@customer, url:customer_path, local: true ,method: :put) do |f| %>-->
     <%= f.label :ご購入個数 %>
     <%= f.number_field :quantity, value: 1 ,min:1, max:99 %>個
     <%= f.hidden_field :item_id, value: @item.id  %>

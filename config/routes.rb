@@ -35,7 +35,7 @@ Rails.application.routes.draw do
     passwords: 'customers/passwords',
     sessions: 'customers/sessions'}
 
-root "items#index"
+root "homes#top"
   
 get 'homes/top' => 'homes#top', as: 'customer_top'
 get 'homes/about' => 'homes#about', as: 'customer_about'
@@ -51,7 +51,7 @@ get 'homes/about' => 'homes#about', as: 'customer_about'
     resources :shippings, only: [:index, :create, :destroy, :update, :edit]
   end
   
-  
+
 resources :orders, only: [:new, :index, :create, :show]
   post 'orders/check' => 'orders#check', as: 'order_check'
   get 'orders/finish' => 'orders#finish', as: 'order_finish'
