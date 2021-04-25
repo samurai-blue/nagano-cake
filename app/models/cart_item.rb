@@ -3,6 +3,7 @@ class CartItem < ApplicationRecord
   belongs_to :item
   
   validates :customer_id, presence: true
-  validates :items_id, presence: true
+  validates :item_id, presence: true
+  # items_idから
   
 end
