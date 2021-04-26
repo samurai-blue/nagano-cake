@@ -1,6 +1,6 @@
 class CartItemsController < ApplicationController
   before_action :authenticate_customer!
-  before_action :set_cart_item, only, [:show, :update, :destroy, :edit]
+  before_action :set_cart_item, only: [:show, :update, :destroy, :edit]
   before_action :set_customer
 
   # カート内アイテムの表示
@@ -11,16 +11,13 @@ class CartItemsController < ApplicationController
 
    # アイテムの追加
   def create
-    @cart_item = CartItem.new(item_params)
+    @cart_item = current_customer.cart_items.build(cart_item_params)
     @current_item = CartItem.find_by(item_id: @cart_item.item_id,customer_id: @cart_item.customer_id)
-
-      # @cart_item.customer_id = current_customer.id
-        #税抜の小計価格を設定
-      # @cart_item.price = @cart_item.product.price * @cart_item.quantity
-
-      # @cart_item.save
-      # redirect_to cart_items_path
-    if @cart_item.blank?
+    if @cart_item.nil?
+      @current_item.quantity += @cart_item.quantity
+      @current_item.update(cart_item_params)
+      redirect_to cart_items_path
+    end
       if @cart_item.save
         flash[:notice] = '商品が追加されました。'
         redirect_to cart_items_path
@@ -29,12 +26,7 @@ class CartItemsController < ApplicationController
         render 'index'
         flash[:alert] = '商品の追加に失敗しました。'
       end
-    else
-            # @cart_item   .quantity += params[:quantity].to_i
-      @current_item.quantity += params[:quantity].to_i
-      @current_item.update(cart_item_params)
-      redirect_to cart_items_path
-    end
+
       # if @cart_item.blank?
       #   @cart_items = current_customer.cart_items.build(item_id: params[:id])
       # end
@@ -91,12 +83,8 @@ class CartItemsController < ApplicationController
     @cart_item = CartItem.find(params[:id])
    end
 
-   def item_params
-    params.require(:item).permit(:customer_id, :item_id, :quantity, :price)
-   end
-
-   def set_cart_item
-    @cart_item = CartItem.find(params[:id])
+   def cart_item_params
+    params.require(:cart_item).permit(:customer_id, :item_id, :quantity)
    end
 
 end

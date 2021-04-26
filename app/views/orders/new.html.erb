@@ -3,7 +3,7 @@
   <!--カートアイテム内が空ではなければ表示
   < % if current_customer.cart_items.present? %>-->
   <!--エラーメッセージあとで追加-->
-  
+
   <% form_with model: @order, url:order_check_path, method: :post, local: true do |f| %>
 
     <!--支払い方法-->
@@ -16,7 +16,7 @@
         <label><%= f.radio_button :payment_method, "銀行振込" %>銀行振込</label>
       </div>
     </div>
-  
+
       <!--届け先ここから-->
       <!--届け先１：アカウント登録時の住所-->
     <div class="form-group">
@@ -26,15 +26,15 @@
         <span>〒<%= current_customer.postal_code %> <%= current_customer.address %></span>
         <span><%= current_customer.full_name %></span>
       </div>
-    
+
       <!--届け先２：shippingで登録された住所-->
       <div class="radio">
         <label><%= f.radio_button :addresses, "shippings" %>登録先住所から選択</label>
         <!-- order_addressはshippingsのモデルでpostal_code+address+name -->
-        <span><%= f.collection_select(:shipping_id, @shippings, :id, :order_address) %></span>
+        <span><%= f.collection_select :send_to_address, @customer.addresses, :id, :address %></span>
       </div>
     </div>
-    
+
     <!--届け先３：新規の送り先の場合-->
     <div class="form-group">
       <div class="radio">
@@ -54,7 +54,7 @@
       </div>
     </div>
     <!--届け先ここまで-->
-  
+
     <div class="text-center">
       <%= f.submit '確認画面へ進む', class: "btn btn-success" %>
     </div>
