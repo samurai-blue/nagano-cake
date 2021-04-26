@@ -84,5 +84,3 @@ end
   # resources :items
 
 #   root "customer/items#top"
-
-
