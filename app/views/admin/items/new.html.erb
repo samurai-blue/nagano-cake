@@ -3,13 +3,12 @@
 
     <!--div class="col-lg-10 offset-lg-1"-->
         <%= form_with model:@item, local:true, url: admin_items_path do |f| %>
-
-        <div class="justify-content-center">
+        <div class="form-horizontal">
 
             <h4 style="margin-bottom: 20px; text-left; padding: 10px;">商品新規登録</h4>
             <div class="form-group">
                 <%= f.label :商品画像 %>
-                <%=f.attachment_field :image %>
+                <%=f.attachment_field :image , class: "image" %>
             </div>
 
             <div class="form-group">
