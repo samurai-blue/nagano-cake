@@ -63,7 +63,7 @@ resources :genres
 #カートアイテムを全て削除メソッドのために追加
 resources :cart_items, only: [:index, :create, :update, :destroy] do
     collection do
-        delete 'all_destroy'
+        delete 'destroy_all'
     end
 end
 

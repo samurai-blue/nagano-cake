@@ -79,11 +79,11 @@ class CartItemsController < ApplicationController
    end
 
 
-   def all_destroy
+   def destroy_all
       @cart_item = CartItem.find(params[:id])
       # @cart_items = @customer.cart_items
       # @cart_items.all_destroy
-      @customer.cart_items.all_destroy
+      @customer.cart_items.destroy_all
        redirect_to cart_items_path
        flash[:info] = 'カートを空にしました。'
    end
