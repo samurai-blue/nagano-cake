@@ -1,5 +1,4 @@
 class Item < ApplicationRecord
-<<<<<<< HEAD
 
 
   attachment :image
@@ -17,12 +16,10 @@ class Item < ApplicationRecord
   # validates :image_id, presence: true
 
 
-=======
   attachment :image
   belongs_to  :genre
   has_many :cart_items
 
->>>>>>> origin/taku
   def status
     if self.is_saled
      "販売中"
@@ -30,11 +27,9 @@ class Item < ApplicationRecord
       "販売停止中"
     end
   end
-<<<<<<< HEAD
 
   scope :is_active, -> { where(is_saled: true) }
-=======
->>>>>>> origin/taku
+
 
   # 税込み価格をただ出したいとき用
   def add_tax_price

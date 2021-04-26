@@ -35,13 +35,8 @@ Rails.application.routes.draw do
     passwords: 'customers/passwords',
     sessions: 'customers/sessions'}
 
-<<<<<<< HEAD
 root "items#index"
 
-=======
-root "homes#top"
-  
->>>>>>> origin/taku
 get 'homes/top' => 'homes#top', as: 'customer_top'
 get 'homes/about' => 'homes#about', as: 'customer_about'
 # resources :customers, only: [:edit, :show, :update]
@@ -55,11 +50,7 @@ get 'homes/about' => 'homes#about', as: 'customer_about'
     end
     resources :shippings, only: [:index, :create, :destroy, :update, :edit]
   end
-<<<<<<< HEAD
 
-=======
-  
->>>>>>> origin/taku
 
 resources :orders, only: [:new, :index, :create, :show]
   post 'orders/check' => 'orders#check', as: 'order_check'
