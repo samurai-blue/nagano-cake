@@ -80,17 +80,10 @@ class CartItemsController < ApplicationController
    end
 
    private
-<<<<<<< HEAD
-
-   def set_customer
-    @customer = current_customer
-   end
-=======
 
   # def set_customer
   #   @customer = current_customer
   # end
->>>>>>> 7c6b23b5b1a0495e7f222398363e8d9da73df6f1
 
   # def set_cart_item
   #   # @cart_item = CartItem.find(params[:id])
