@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   before_action :set_customer
 
   def index
-    @orders = @customer.orders
+    @orders = current_customer.orders
   end
 
   def check
@@ -106,14 +106,14 @@ class OrdersController < ApplicationController
       :created_at, :send_to_address, :name, :order_status, :payment_method, :postal_code, :shipping_cost,
       order_items_attributes: [:order_id, :item_id, :quantity, :total_payment, :production_status]
       )
-  end  
+  end
 
 end
 
 
 
   # before_action :authenticate_customer!
-  
+
 
   # def index
   #   @orders = current_customer.orders

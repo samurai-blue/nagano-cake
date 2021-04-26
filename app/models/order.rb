@@ -6,10 +6,10 @@ class Order < ApplicationRecord
   has_many :items, :through => :order_items
 
   belongs_to :customer
-  
-  validates :name, presence: true 
+
+  validates :name, presence: true
   validates :postal_code, presence: true
-  validates :shipping, presence: true
+  #validates :shipping, presence: true
 
   def full_name
     self.last_name + " " + self.first_name

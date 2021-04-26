@@ -16,13 +16,8 @@ class Admins::ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-<<<<<<< HEAD:app/controllers/admins/items_controller.rb
-    @item.save!
-    redirect_to admins_items_path
-=======
     @item.save
     redirect_to admin_item_path(@item.id)
->>>>>>> origin/taku:app/controllers/admin/items_controller.rb
   end
 
   def edit

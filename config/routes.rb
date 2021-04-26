@@ -22,7 +22,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'homes/top' => 'homes#top', as:'top'
-    resources :customers,only: [:index,:show,:edit,:update]
     resources :items, only: [:index, :create, :new, :edit, :show, :update]
     resources :orders, only: [:index, :create, :show, :update]
     resources :order_details, only: [:index, :create, :show, :update]
@@ -35,7 +34,7 @@ Rails.application.routes.draw do
     passwords: 'customers/passwords',
     sessions: 'customers/sessions'}
 
-root "items#index"
+root "homes#top"
 
 get 'homes/top' => 'homes#top', as: 'customer_top'
 get 'homes/about' => 'homes#about', as: 'customer_about'
