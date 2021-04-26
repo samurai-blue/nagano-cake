@@ -15,7 +15,6 @@ class Item < ApplicationRecord
   validates :price, presence: true
   validates :image_id, presence: true
 
-
   def status
     if self.is_saled
      "販売中"
@@ -23,7 +22,8 @@ class Item < ApplicationRecord
       "販売停止中"
     end
   end
-
+ 
+  ♯ scope :is_active, -> { where(is_saled: true) }
 
   # 税込み価格をただ出したいとき用
   def add_tax_price
