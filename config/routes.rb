@@ -1,16 +1,5 @@
 Rails.application.routes.draw do
 
-  
-  namespace :admin do
-    get 'searches/search'
-  end
-  namespace :admin do
-    get 'orders/index'
-    get 'orders/show'
-  end
-  namespace :admin do
-    get 'homes/top'
-  end
   # 管理者側のrouting
   devise_scope :admins do
     devise_for :admins, controllers: {
@@ -29,14 +18,15 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :create, :edit, :update]
     get 'search' => 'searches#search', as: 'search'
   end
-  
+
   devise_for :customers, controllers: {
     registrations: 'customers/registrations',
     passwords: 'customers/passwords',
     sessions: 'customers/sessions'}
 
 root "homes#top"
-  
+
+
 get 'homes/top' => 'homes#top', as: 'customer_top'
 get 'homes/about' => 'homes#about', as: 'customer_about'
 # resources :customers, only: [:edit, :show, :update]
@@ -50,7 +40,7 @@ get 'homes/about' => 'homes#about', as: 'customer_about'
     end
     resources :shippings, only: [:index, :create, :destroy, :update, :edit]
   end
-  
+
 
 resources :orders, only: [:new, :index, :create, :show]
   post 'orders/check' => 'orders#check', as: 'order_check'
@@ -90,14 +80,6 @@ end
   #   end
   # end
 
-  # resource :customer, only: [:show,:edit,:update] do
-  #   collection do
-  #     get 'out'
-  #     patch 'withdraw'
-  #   end
-  #   resources :shippings, only: [:index, :create, :destroy, :update, :edit]
-  # end
-  
   # resources :items
 
 #   root "customer/items#top"
