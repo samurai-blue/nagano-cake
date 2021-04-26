@@ -2,9 +2,11 @@ class OrdersController < ApplicationController
   before_action :authenticate_customer!
   before_action :set_customer
 
-  def index
-    @orders = @customer.orders
+  def new
+    @order = Order.new
+    @customer = current_customer
   end
+
 
   def check
     @order = Order.new
@@ -16,7 +18,7 @@ class OrdersController < ApplicationController
       when 1
         @order.postal_code = @customer.postal_code
         @order.send_to_address = @customer.address
-        @order.name = @customer.family_name + @customer.first_name
+        @order.name = @customer.last_name + @customer.first_name
       when 2
         @sta = params[:order][:send_to_address].to_i
         @send_to_address = Shipping.find(@sta)
@@ -81,19 +83,19 @@ class OrdersController < ApplicationController
     end
   end
 
+  def finish
+  end
+
+  def index
+    @orders = @customer.orders
+  end
+
   def show
     @order = Order.find(params[:id])
     if @order.customer_id != current_customer.id
       redirect_back(fallback_location: root_path)
       flash[:alert] = "アクセスに失敗しました。"
     end
-  end
-
-  def new
-    @order = Order.new
-  end
-
-  def finish
   end
 
   private
@@ -106,14 +108,14 @@ class OrdersController < ApplicationController
       :created_at, :send_to_address, :name, :order_status, :payment_method, :postal_code, :shipping_cost,
       order_items_attributes: [:order_id, :item_id, :quantity, :total_payment, :production_status]
       )
-  end  
+  end
 
 end
 
 
 
   # before_action :authenticate_customer!
-  
+
 
   # def index
   #   @orders = current_customer.orders

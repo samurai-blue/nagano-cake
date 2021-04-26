@@ -71,11 +71,5 @@ gem 'kaminari','~> 1.2.1'
 gem 'bootstrap', '~> 4.5'
 gem 'font-awesome-sass', '~> 5.13'
 
-<<<<<<< HEAD
-=======
-
-# 環境変数の管理
-gem 'dotenv-rails', require: 'dotenv/rails-now'
-# デバッグ
->>>>>>> 8ef09187159921443fe1adb4ba4e7dc00e126103
 gem 'pry-rails'
+gem 'pry-byebug'
