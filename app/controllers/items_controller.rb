@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  # customer::消す？
+
 
 def top
 end

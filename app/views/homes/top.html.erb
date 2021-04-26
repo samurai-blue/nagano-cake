@@ -1,19 +1,20 @@
 <div class = "container">
   <div class="row">
-    <h1>ようこそながのCAKEへ！</h1>
+    <!--<h1>ようこそながのCAKEへ！</h1>-->
   </div>
-  <div class ="row">
-    <div class = "mx-auto">
+  <!--<div class ="row">-->
+  <!--  <div class = "mx-auto">-->
       <!--<div class ="center-block">-->
+      <div class="mx-auto" style="width: 400px;">
+        ようこそながのCAKEへ!</br>
         このサイトはケーキ販売のECサイトになります。</br>
-        会員でない方も商品の閲覧はできますが</br>
+        会員でない方も商品の閲覧はできますが、</br>
         購入には会員登録が必要になります。</br>
-      <!--</div>-->
-    </div>
-  </div>
+      </div>
+  <!--  </div>-->
+  <!--</div>-->
   <div class ="row">
     <h2>新着商品</h2>
-  </div>
   <div class ="row">
     <% @items.each do |item| %>
       <div class="col-3">
@@ -23,7 +24,8 @@
       </div>
     <% end %>
   </div>
-  <div class ="row float-right">
-    <%= link_to "すべての商品を見る", items_path %>
   </div>
+  <div class ="row float-right">
+    <%#= link_to "すべての商品を見る", items_path %>
+  <!--<div class ="row">-->
 </div>

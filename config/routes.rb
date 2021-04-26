@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  
+
   namespace :admin do
     get 'searches/search'
   end
@@ -29,14 +29,14 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :create, :edit, :update]
     get 'search' => 'searches#search', as: 'search'
   end
-  
+
   devise_for :customers, controllers: {
     registrations: 'customers/registrations',
     passwords: 'customers/passwords',
     sessions: 'customers/sessions'}
 
-root "homes#top"
-  
+root "items#index"
+
 get 'homes/top' => 'homes#top', as: 'customer_top'
 get 'homes/about' => 'homes#about', as: 'customer_about'
 # resources :customers, only: [:edit, :show, :update]
@@ -50,12 +50,12 @@ get 'homes/about' => 'homes#about', as: 'customer_about'
     end
     resources :shippings, only: [:index, :create, :destroy, :update, :edit]
   end
-  
+
 
 resources :orders, only: [:new, :index, :create, :show]
   post 'orders/check' => 'orders#check', as: 'order_check'
   get 'orders/finish' => 'orders#finish', as: 'order_finish'
-resources :items, only: [:index, :show]
+# resources :items, only: [:index, :show]
 resources :order_details, only: [:index, :create, :new]
 # resources :shippings, only: [:index, :create, :edit, :update, :destroy]
 resources :genres
@@ -66,6 +66,8 @@ resources :cart_items, only: [:index, :create, :update, :destroy] do
         delete 'all_destroy'
     end
 end
+
+  root "customer/items#top"
 
 end
 
@@ -97,7 +99,7 @@ end
   #   end
   #   resources :shippings, only: [:index, :create, :destroy, :update, :edit]
   # end
-  
+
   # resources :items
 
 #   root "customer/items#top"

@@ -2,13 +2,22 @@
 <div class="row" style= "margin: 20px auto;">
 
     <!--div class="col-lg-10 offset-lg-1"-->
+<<<<<<< HEAD:app/views/admins/items/new.html.erb
+        <%= form_with model:@item, local:true, url: admins_items_path do |f| %>
+        <div class="form-horizontal row justify-content-center">
+=======
         <%= form_with model:@item, local:true, url: admin_items_path do |f| %>
         <div class="justify-content-center">
+>>>>>>> origin/taku:app/views/admin/items/new.html.erb
 
             <h4 style="margin-bottom: 20px; text-left; padding: 10px;">商品新規登録</h4>
             <div class="form-group">
                 <%= f.label :商品画像 %>
+<<<<<<< HEAD:app/views/admins/items/new.html.erb
+                <%=f.attachment_field :image, class: "image" %>
+=======
                 <%=f.attachment_field :image %>
+>>>>>>> origin/taku:app/views/admin/items/new.html.erb
             </div>
 
             <div class="form-group">
