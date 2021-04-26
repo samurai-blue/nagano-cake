@@ -2,42 +2,38 @@
     <div class="row" style="width: 90%; margin: 20px auto;">
     <div class="col-lg-1" ></div>
       <div class="col-lg-5" style ="margin: 100px 0 100px 0">
-        <%= attachment_image_tag(@item, :image, style:  "max-width: 100%", fallback: "no_img.jpg", size: '300x200') %>
+        <%= attachment_image_tag(@item, :image, style:  "max-width: 100%", fallback: "no_img.jpg") %>
       </div>
       <div class="col-lg-6" style ="margin: 100px 0 100px 0">
 
-      <table class="table">
+       <table class="table">
         <tr>
-          <th>商品名</th>
-          <td><%= @item.name %></td>
+        <th>商品名</th>
+        <td><%= @item.name %></td>
         </tr>
 
         <tr>
-          <th>商品説明</th>
-          <td><%= @item.description %></td>
+        <th>商品説明</th>
+        <td><%= @item.description %></td>
         </tr>
 
 
         <tr>
-          <th>税込価格 （税抜価格）</th>
-          <td>
-            <%= price_include_tax(@item.price) %>
-          </td>
-        </tr>
+            <th>税込価格 （税抜価格）</th>
+        <td>
+          <%= price_include_tax(@item.price) %>
+        </td>
         <tr>
+          <div class="w-50 offset-lg-6">
           <%= form_with(model: [@item, @cart], url:cart_items_path,local: true ) do |f| %>
-            <td>
-              <%= f.label :ご購入個数 %>
-            </td>
-            <td>
-              <%= f.number_field :quantity, value: 1 ,min:1, max:99 %>個
-              <%= f.hidden_field :item_id, value: @item.id  %>
-              <%= f.submit "カートに入れる", class: "btn btn-danger" %>
-            </td>
+            <%= f.label :ご購入個数 %>
+            <%= f.number_field :quantity, value: 1 ,min:1, max:99 %>個
+            <%= f.hidden_field :item_id, value: @item.id  %>
+            <%= f.submit "カートに入れる", class: "btn btn-danger" %>
           <% end %>
         </tr>
-      </table>
-      </div>
+    </div>
   </div>
 
   </div>
+</div>
