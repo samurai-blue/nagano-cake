@@ -6,7 +6,6 @@ class OrdersController < ApplicationController
     @order = Order.new
     @customer = current_customer
     
-    # @shippings = @customer.shippings.all
   end
 
 
@@ -70,7 +69,7 @@ class OrdersController < ApplicationController
 
       # cart_itemsの内容をorder_itemsに新規登録
       current_customer.cart_items.each do |cart_item|
-        order_item = @order.order_items.build
+        order_item = @order.order_details.build
         order_item.order_id = @order.id
         order_item.item_id = cart_item.item_id
         order_item.quantity = cart_item.quantity
