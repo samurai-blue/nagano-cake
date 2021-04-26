@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-xs-8">
      <!-- < % if current_customer.cart_items.present? %>-->
-     
+
      <!--注文する商品の詳細-->
       <table class="table table-hover table-inverse table-bordered">
         <thead>
@@ -19,7 +19,7 @@
           <tr>
             <td class="text-left">
               <!--< %= image %>-->
-              <%= attachment_image_tag(item, :image, :fill, 220, 180, fallback: 'no_image.jpg') %>
+              <!--< %= attachment_image_tag(item, :image, :fill, 220, 180, fallback: 'no_image.jpg') %>
               <!--< %= cart_item.name %>-->
               <%= cart.item.name%>
             </td>
@@ -59,10 +59,10 @@
     </div>
 
     <h4>支払い方法</h4>
-    <p><%= @order.payment %></p>
+    <p><%= @order.payment_method %></p>
 
     <h4>お届け先</h4>
-    <p>〒<%= @order.postal_code %><%= @order.address %>
+    <p>〒<%= @order.postal_code %><%= @order.send_to_address %>
     <br>
     <%= @order.name %>
     </p>
