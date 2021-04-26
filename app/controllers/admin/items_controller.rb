@@ -5,21 +5,22 @@ class Admin::ItemsController < ApplicationController
     @item = Item.new
     @items = Item.all.page(params[:page]).per(8)
   end
-  
+
   def show
     @item = Item.find(params[:id])
   end
-  
+
   def new
     @item = Item.new
   end
 
   def create
     @item = Item.new(item_params)
+    byebug
     @item.save
     redirect_to admin_item_path(@item.id)
   end
-  
+
   def edit
     @item = Item.find(params[:id])
   end
@@ -31,7 +32,7 @@ class Admin::ItemsController < ApplicationController
   end
 
   private
-  
+
   def item_params
       params.require(:item).permit(:image, :name, :description, :genre_id, :price, :is_saled)
   end

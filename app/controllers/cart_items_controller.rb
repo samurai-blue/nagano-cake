@@ -37,6 +37,7 @@ class CartItemsController < ApplicationController
     else
       @current_item.quantity += params[:cart_item][:quantity].to_i
       @current_item.save
+
       redirect_to cart_items_path
     end
   end
@@ -44,6 +45,7 @@ class CartItemsController < ApplicationController
    def update
       @cart_item = CartItem.find(params[:id])
       @cart_item.update(item_params)
+
       redirect_to cart_items_path
       flash[:success] = 'カート内の商品を更新しました！'
     # @cart_items = current_customer.cart_items
