@@ -1,30 +1,45 @@
-<div class="col-lg-10 space">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-4 offset-lg-2">
-        <%= attachment_image_tag(@item, :image, :fill, 560, 420, fallback: "no_img.jpg") %>
-      </div>
-      <div class="col-lg-4">
-        <h3>
-          <%= @item.name %>
-        </h3>
-        <h4>商品説明</h4>
-        <%= @item.description %>
-        <h4>
-          <%= price_include_tax(@item.price) %>
-        </h4>
-      </div>
+<div class="container">
+  <div class="row" style="width: 90%; margin: 20px auto;">
+    <div class="col-lg-1" ></div>
+    <div class="col-lg-5" style ="margin: 100px 0 100px 0">
+      <%= attachment_image_tag @item, :image, style:  "max-width: 100%" %>
     </div>
-  </div>
-  
-  <div class="container">
-    <div class="w-50 offset-lg-6">
-      <%= form_with(model: [@item, @cart], local: true, url: {controller: 'cart_items', action: 'create'}) do |f| %>
-        <%= f.label :ご購入個数 %>
-        <%= f.number_field :quantity, value: 1 ,min:1, max:99 %>個
-        <%= f.hidden_field :item_id, value: @item.id  %>
-      <%= f.submit "カートに入れる", class: "btn btn-danger" %>
-      <% end %>
+    
+    <div class="col-lg-6" style ="margin: 100px 0 100px 0">
+      <table class="table">
+	      <tr>
+		      <th>商品名</th>
+		      <td><%= @item.name %></td>
+	      </tr>
+	      <tr>
+		      <th>商品説明</th>
+		      <td><%= @item.description %></td>
+	      </tr>
+
+    	  <tr>
+    	    <th>ジャンル</th>
+    		  <td><%= @item.genre.name %></td>
+    	  </tr>
+    	  <tr>
+          <th>税込価格 （税抜価格）</th>
+    		<!--<td><= AddTax(@item.price) %>   (<= @item.price %>)  円</td>-->
+    		  <td>
+    			<%= @item.add_tax_price.to_s(:delimitted) %> 円
+    	    </td>
+    	  <tr>
+	        <th>販売ステータス</th>
+      		<td>
+      		  <% if @item.is_saled == false %>
+      		    販売中
+      		  <% elsif @item.is_saled == true %>
+      		    販売停止
+      		  <% end %>
+      		</td>
+	      </tr>
+	    </table>
+    	<%= link_to edit_admin_item_path(@item.id) do%>
+    	  <label class="btn btn-success", class= "positon: relative; top: 5px; left: 10px;">編集する</label>
+    	<% end %>
     </div>
   </div>
 </div>

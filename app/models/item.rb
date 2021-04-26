@@ -24,6 +24,15 @@ class Item < ApplicationRecord
     end
   end
 
-  scope :is_active, -> { where(is_saled: true) }
+
+  # 税込み価格をただ出したいとき用
+  def add_tax_price
+      (self.price * 1.08).round
+  end
+
+  # 税込み価格をpriceに入れたいとき用
+  def tax_price
+      self.price = (self.price * 1.08).round
+  end
 
 end
