@@ -1,2 +1,42 @@
-<h1>Admin::Orders#index</h1>
-<p>Find me in app/views/admin/orders/index.html.erb</p>
+<div class = "container">
+  <div class ="row">
+    <div class="col-lg-10 offset-lg-1">
+
+      <h2 class="title_h2 text-left" style="margin-bottom: 30px;">注文履歴一覧</h2>
+
+      <table class = "table table-hover">
+        <thead class = "thead-light">
+          <tr>
+            <th>購入日時</th>
+            <th>購入者</th>
+            <th>注文個数</th>
+            <th>注文ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- @orders.each do |order| -->
+            <tr>
+              <td>だ</td>
+              <td>み</td>
+              <td>ー</td>
+              <td>です</td>
+              <!--th><= order.customer_id %></th-->
+              <!--th><= link_to admin_item_path(order.id) do%><= item.name %> < end %></th-->
+              <!--th><= item.price %></th-->
+              <!--th><= item.genre.name %></th-->
+              <!-- if item.is_saled %>
+                <!--th>販売中</th>
+              < else %>
+                 <th>販売停止中</th>
+              < end %-->
+            </tr>
+          <!-- end %-->
+        </tbody>
+      </table>
+
+    </div>
+    <div class="col-lg-1"></div>
+    <!--= paginate @orders %-->
+  </div>
+</div>
+
