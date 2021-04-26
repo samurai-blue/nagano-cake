@@ -5,6 +5,8 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @customer = current_customer
+    
+    # @shippings = @customer.shippings.all
   end
 
 
@@ -106,7 +108,7 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(
       :created_at, :send_to_address, :name, :order_status, :payment_method, :postal_code, :shipping_cost,
-      order_items_attributes: [:order_id, :item_id, :quantity, :total_payment, :production_status]
+      order_details_attributes: [:order_id, :item_id, :quantity, :total_payment, :production_status]
       )
   end
 

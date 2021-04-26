@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2021_04_24_040920) do
   end
 
   create_table "cart_items", force: :cascade do |t|
-    t.integer "quantity"
+    t.integer "quantity", default: 0
     t.integer "item_id"
     t.integer "customer_id"
     t.datetime "created_at", null: false
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 2021_04_24_040920) do
     t.string "postal_code"
     t.text "send_to_address"
     t.string "name"
-    t.integer "shipping_cost"
+    t.integer "shipping_cost", default: 800
     t.integer "total_payment"
     t.integer "payment_method"
     t.integer "order_status"
@@ -99,6 +99,18 @@ ActiveRecord::Schema.define(version: 2021_04_24_040920) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end
