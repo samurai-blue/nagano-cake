@@ -41,10 +41,11 @@ get 'homes/about' => 'homes#about', as: 'customer_about'
     resources :shippings, only: [:index, :create, :destroy, :update, :edit]
   end
 
-
+post 'orders/check' => 'orders#check', as: 'order_check'
+get 'orders/finish' => 'orders#finish', as: 'order_finish'
 resources :orders, only: [:new, :index, :create, :show]
-  post 'orders/check' => 'orders#check', as: 'order_check'
-  get 'orders/finish' => 'orders#finish', as: 'order_finish'
+
+
 resources :items, only: [:index, :show]
 resources :order_details, only: [:index, :create, :new]
 # resources :shippings, only: [:index, :create, :edit, :update, :destroy]

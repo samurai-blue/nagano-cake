@@ -6,6 +6,7 @@
 
      <!--注文する商品の詳細-->
       <table class="table table-hover table-inverse table-bordered">
+
         <thead>
           <tr class="info">
             <th>商品名</th>
@@ -80,10 +81,20 @@
     <br>
     <%= @order.name %>
     </p>
+
+    <%= form_with(model: @order, local: true) do |f| %>
+    <%= f.hidden_field :customer_id, :value => current_customer.id %>
+    <%= f.hidden_field :postal_code, :value => "#{@order.postal_code}" %>
+    <%= f.hidden_field :send_to_address, :value => "#{@order.send_to_address}" %>
+    <%= f.hidden_field :name, :value => "#{@order.name}" %>
+
+
     <div class="text-center">
-      <%= link_to '注文を確定する', order_finish_path, class:"btn btn-success" %>
+       <%= f.submit "購入を確定する", class: "btn btn-danger btn-lg" %>
+     <!-- < %= link_to '注文を確定する', order_finish_path, method: :post, class:"btn btn-success" %>-->
     </div>
-     <!--< % else %>
-      < % end %>-->
+     <!--< % else %>-->
+    <% end %>
   </div>
 </div>
+

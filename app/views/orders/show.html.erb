@@ -1,105 +1,4 @@
-<h1>Orders#show</h1>
-<p>Find me in app/views/orders/show.html.erb</p>
 
-<!--どうやって一般ユーザーと管理者を区別するかはおいておきますが-->
-<!--ここでは管理者権限の有無で表示内容を変えるのがよいかと思いました-->
-<!--< % else %>  -->
-<!--そうでない場合-->
-  <h2>注文履歴詳細</h2>
-  <br>
-  <div class ="container">
-    <div class ="row">
-      <div class ="col-6 offset-1">
-        <%= render "orders/order_info" %>
-        <!--注文情報-->
-      </div>
-      <div class ="col-5">
-        <%= render "orders/order_billing" %>
-        <!--請求金額-->
-      </div>
-    </div>
-    <br>
-    <div class = "row">
-      <div class = "col-12">
-        <%= render "orders/order_item" %>
-        <!--注文内容-->
-      </div>
-    </div>
-  </div>
-
-<!--< % end %>-->
-
-
-<!--< % if cullent_user == admin %>-->
-<!--現在のログインユーザーが管理者の場合-->
-
-<!--  <h2>注文履歴詳細</h2>-->
-
-  
-<!--  <table class = "table">-->
-<!--    <tr>-->
-<!--      <th>購入者</th>-->
-<!--      <td>名前</td>-->
-<!--    </tr>-->
-<!--    <tr>-->
-<!--      <th>注文日</th>-->
-<!--      <td>yyyy/mm/dd</td>-->
-<!--    </tr>-->
-<!--    <tr>-->
-<!--      <th>配送先</th>-->
-<!--      <td>〒〜住所〜</td>-->
-<!--    </tr>-->
-<!--    <tr>-->
-<!--      <th>支払い方法</th>-->
-<!--      <td>銀行振込</td>-->
-<!--    </tr>-->
-<!--    <tr>-->
-<!--      <th>注文ステータス</th>-->
-<!--      <td></td>-->
-<!--    </tr>-->
-<!--  </table>-->
-  
-<!--  <table>-->
-<!--    <thead>-->
-<!--      <tr>-->
-<!--        <th>商品名</th>-->
-<!--        <th>単価（税込み）</th>-->
-<!--        <th>数量</th>-->
-<!--        <th>小計</th>-->
-<!--        <th>製作ステータス</th>-->
-<!--      </tr>-->
-<!--    </thead>-->
-<!--    <tbody>-->
-<!--      <tr>-->
-<!--        <td>ケーキ</td>-->
-<!--        <td>110</td>-->
-<!--        <td>2</td>-->
-<!--        <td>220</td>-->
-<!--        <td>プルダウンタブいれる</td>-->
-<!--      </tr>-->
-<!--    </tbody>-->
-<!--  </table>-->
-  
-<!--  <table>-->
-<!--    <tr>-->
-<!--      <th>商品合計</th>-->
-<!--      <td>220</td>-->
-<!--    </tr>-->
-<!--    <tr>-->
-<!--      <th>送料</th>-->
-<!--      <td>600</td>-->
-<!--    </tr>-->
-<!--    <tr>-->
-<!--      <th>請求金額</th>-->
-<!--      <td>820</td>-->
-<!--    </tr>-->
-<!--  </table>-->
- 
- 
- <!--以下お手本-->
- 
- 
- 
  <div class="col-lg-10 offset-1 space">
   <div class="row">
     <h2>注文履歴詳細</h2>
@@ -117,7 +16,7 @@
               <strong>注文日</strong>
             </div>
             <div class="col-lg-9">
-              <%= simple_time(@order.created_at) %>
+              <%= @order.created_at %>
             </div>
           </div>
           <div class="row space-sm">
@@ -133,7 +32,7 @@
               <strong>支払方法</strong>
             </div>
             <div class="col-lg-9">
-              <%= payment_method(@order.payment_method) %>
+              < %= payment_method(@order.payment_method) %>
             </div>
           </div>
           <div class="row space-sm">
@@ -141,7 +40,7 @@
               <strong>状況</strong>
             </div>
             <div class="col-lg-9">
-              <%= order_status(@order) %>
+              < %= order_status(@order) %>
             </div>
           </div>
         </div>
@@ -167,19 +66,19 @@
         </div>
       </div>
       <% sum_all = 0 %>
-      <% @order.order_items.each do |order_item| %>
+      <% @order.order_details.each do |order_item| %>
       <div class="row space-sm">
         <div class="col-lg-4">
           <%= order_item.item.name %>
         </div>
         <div class="col-lg-3">
-          <%= price_include_tax(order_item.order_price) %>
+          <%= price_include_tax(order_item. total_payment) %>
         </div>
         <div class="col-lg-2">
           <%= order_item.quantity %>個
         </div>
         <div class="col-lg-2">
-          <%= sub_total = price_include_tax(order_item.order_price).to_i * order_item.quantity %>円
+          <%= sub_total = price_include_tax(order_item. total_payment).to_i * order_item.quantity %>円
           <% sum_all += sub_total %>
         </div>
       </div>
