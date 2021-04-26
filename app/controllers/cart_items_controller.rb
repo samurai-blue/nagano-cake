@@ -60,8 +60,9 @@ class CartItemsController < ApplicationController
   end
 
    def update
-     
-    if @cart_item.update(cart_item_params)
+    @cart_item = CartItem.find(params[:id])
+    
+    if @cart_item.update(item_params)
       redirect_to cart_items_path
       flash[:success] = 'カート内の商品を更新しました！'
     end
@@ -79,6 +80,7 @@ class CartItemsController < ApplicationController
 
 
    def all_destroy
+      @cart_item = CartItem.find(params[:id])
       # @cart_items = @customer.cart_items
       # @cart_items.all_destroy
       @customer.cart_items.all_destroy
@@ -87,6 +89,7 @@ class CartItemsController < ApplicationController
    end
 
    def destroy
+      @cart_item = CartItem.find(params[:id])
       # @cart_item = CartItem.find(params[:id])
        @cart_item.destroy
        redirect_to cart_items_path
