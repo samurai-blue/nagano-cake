@@ -5,7 +5,7 @@ class CreateOrders < ActiveRecord::Migration[5.2]
       t.string :postal_code
       t.text :send_to_address
       t.string :name
-      t.integer :shipping_cost
+      t.integer :shipping_cost, default: 800
       t.integer :total_payment
       t.integer :payment_method
       t.integer :order_status

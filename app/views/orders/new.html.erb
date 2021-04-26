@@ -41,8 +41,12 @@
   <!-- 登録済み住所 -->
   <div class="row space-sm">
     <p>
-      <label>< %= f.radio_button :add, 2, style: "display: inline-block" %>登録住所から選択</label><br>
-      < %= f.collection_select :send_to_address, @customer.addresses, :id, :address %>
+      <label><%= f.radio_button :add, 2, style: "display: inline-block" %>登録住所から選択</label><br>
+      <!--< %= f.collection_select :send_to_address, @customer.addresses, :id, :address %>-->
+        <!--↑を↓に書き換え-->
+      <%= f.collection_select :send_to_address, @customer.shippings, :id, :address , { prompt: "選択してください" } %>
+        <!--f.collection_select カラム名, 要素の配列, value属性の項目, テキストの項目, { prompt: "選択してください" } -->
+        <!--今回は@customerに紐づくテーブルを持ってきたかったので.shippings-->
     </p>
   </div>
 
