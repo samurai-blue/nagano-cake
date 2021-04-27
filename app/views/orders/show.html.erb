@@ -16,7 +16,7 @@
               <strong>注文日</strong>
             </div>
             <div class="col-lg-9">
-              <%= @order.created_at %>
+              <%= @order.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
             </div>
           </div>
           <div class="row space-sm">
@@ -32,7 +32,7 @@
               <strong>支払方法</strong>
             </div>
             <div class="col-lg-9">
-              < %= payment_method(@order.payment_method) %>
+              <%= @order.payment_method %>
             </div>
           </div>
           <div class="row space-sm">
@@ -40,7 +40,7 @@
               <strong>状況</strong>
             </div>
             <div class="col-lg-9">
-              < %= order_status(@order) %>
+              <%= @order.order_status %>
             </div>
           </div>
         </div>

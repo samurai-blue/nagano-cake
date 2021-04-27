@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
 
 
   def check
-    @order = Order.new
+    @order = Order.new(order_params)
     @cart_items = current_customer.cart_items
     #@order.payment_method = params[:order][:payment_method]
     # 住所のラジオボタン選択に応じて引数を調整
@@ -51,15 +51,15 @@ class OrdersController < ApplicationController
         @address.save
       end
 
-      # cart_itemsの内容をorder_itemsに新規登録
+      # cart_itemsの内容をorder_detailsに新規登録
       current_customer.cart_items.each do |cart_item|
-        order_item = @order.order_details.build
-        order_item.order_id = @order.id
-        order_item.item_id = cart_item.item_id
-        order_item.quantity = cart_item.quantity
-        order_item.total_payment = cart_item.item.price
-        order_item.save
-        cart_item.destroy #order_itemに情報を移したらcart_itemは消去
+        order_detail = @order.order_details.build
+        order_detail.order_id = @order.id
+        order_detail.item_id = cart_item.item_id
+        order_detail.quantity = cart_item.quantity
+        order_detail.total_payment = cart_item.item.price
+        order_detail.save
+        cart_item.destroy #order_detailに情報を移したらcart_itemは消去
       end
       @order.save
 
@@ -93,7 +93,7 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(
       :created_at, :send_to_address, :name, :order_status, :payment_method, :postal_code, :shipping_cost,
-      order_items_attributes: [:order_id, :item_id, :quantity, :total_payment, :production_status]
+      order_details_attributes: [:order_id, :item_id, :quantity, :total_payment, :production_status]
       )
   end
 
@@ -118,16 +118,16 @@ end
   #   flash[:notice] = "ご注文が確定しました。"
   #   redirect_to finish_orders_parh
     # カート商品の情報を注文商品に移動
-    #空の@order_itemsを作成し、 order_idとitem_idにそれぞれ、OrderモデルのidとItemモデルのidを代入するという流れ
+    #空の@order_detailsを作成し、 order_idとitem_idにそれぞれ、OrderモデルのidとItemモデルのidを代入するという流れ
     # @cart_items = current_cart
     # @cart_items.each do |cart_item|
-    #   @order_items = @order.order_items.new
-    #   @order_items.item_id = cart_item.item.id
-    #   @order_items.name = cart_item.item.name
-    #   @order_items.price = cart_item.item.price
-    #   @order_items.quantity = cart_item.item.quantity
-    #   @order_items.save
-      #@order_items.newと@order_items.saveもeach文,cart_itemの数だけデータを保存する
+    #   @order_details = @order.order_details.new
+    #   @order_details.item_id = cart_item.item.id
+    #   @order_details.name = cart_item.item.name
+    #   @order_details.price = cart_item.item.price
+    #   @order_details.quantity = cart_item.item.quantity
+    #   @order_details.save
+      #@order_details.newと@order_details.saveもeach文,cart_itemの数だけデータを保存する
     # end
     # 注文完了後、カート商品を空にする
     # @cart_items.destroy.all

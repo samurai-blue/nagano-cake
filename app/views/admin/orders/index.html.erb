@@ -14,22 +14,32 @@
           </tr>
         </thead>
         <tbody>
-          <% @orders.each do |order| %> 
+          <% @orders.each do |order| %>
             <tr>
-              <td><%= order.created_at %></td>
-              <td><%= order.name %></td>
-              <td><%= order.items %></td>
-              <th><= order.customer_id %></th>
-              <th><= link_to admin_item_path(order.id) do%><= item.name %> < end %></th>
-              <th><= item.price %></th>
-              <th><= item.genre.name %></th>
-              <!-- < % if item.is_saled %>-->
-              <!--  <th>販売中</th>-->
-              <!--< % else %>-->
-                 <!--<th>販売停止中</th>-->
-              <!--< % end %>-->
+              <td>
+                <%= link_to admin_order_path(order), data: {"turbolinks" => false}, :style=>"color:#528fff;"  do %>
+                  <%= order.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+                <% end %>
+              </td>
+              <td><%= order.send_to_address %></td>
+              <td>
+                <% sum_all = 0 %>
+                <% order.order_details.each do |order_item| %>
+                  <% sum_all +=  order_item.quantity %>
+                <% end %>
+                <%= sum_all %>
+              </td>
+              <td><%= order.order_status %></td>
+              <!--th><= order.customer_id %></th-->
+              <!--th><= link_to admin_item_path(order.id) do%><= item.name %> < end %></th-->
+              <!--th><= item.price %></th-->
+              <!--th><= item.genre.name %></th-->
+              <!-- if item.is_saled %>
+                <!--th>販売中</th>
+              < else %>
+                 <th>販売停止中</th>
+              < end %-->
             </tr>
-            
           <% end %>
         </tbody>
       </table>
