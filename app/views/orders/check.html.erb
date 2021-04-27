@@ -1,4 +1,4 @@
-  
+
 <div class="container" style="margin-top: 20px;">
 
   <h2 style="margin-bottom: 30px;">注文情報確認</h2>
@@ -96,7 +96,7 @@
     <%= f.hidden_field :postal_code, :value => "#{@order.postal_code}" %>
     <%= f.hidden_field :send_to_address, :value => "#{@order.send_to_address}" %>
     <%= f.hidden_field :name, :value => "#{@order.name}" %>
-    <%= f.hidden_field :payment_method => "#{@order.payment_method}" %>
+    <%= f.hidden_field :payment_method, :value => "#{@order.payment_method}" %>
 
 
     <div class="text-center">
