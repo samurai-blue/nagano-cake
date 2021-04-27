@@ -34,11 +34,11 @@
            <% sum_all = 0 %>>
             <% @cart_items.each do |cart_item| %>
               <tr>
-              	<td>
+
+                <td>
                   <%= link_to item_path(cart_item.item) do %>
-                  <%= attachment_image_tag(cart_item.item, :image, :fill, 50, 50, fallback: "no_img.jpg") %>
+                  <%= attachment_image_tag(cart_item.item, :image, :fill, 100, 100, fallback: "no_img.jpg") %>
                   <% end %>
-                  <!--なんかよくわかんないけどエラー出てるからいったんコメントアウト-->
                 </td>
                 <td>
                   <%= link_to item_path(cart_item.item) do %>
