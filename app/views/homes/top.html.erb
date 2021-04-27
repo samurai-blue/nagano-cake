@@ -12,9 +12,18 @@
     </div>
   </div>
   <div class ="row">
-    <h2>新着商品</h2>
+    <h2 style="margin-bottom: 30px">新着商品</h2>
   </div>
   <div class ="row">
+    <% @items.each do |item| %>
+      <div class="col-3">
+        <div class ="row"><%= attachment_image_tag(item, :image, fallback: "no_img.jpg", size: '100x70') %></div>
+        <div class ="row"><%= item.name %></div>
+        <div class ="row"><%= item.price %>円</div>
+      </div>
+    <% end %>
+  </div>
+  <div class ="row float-right">
     <%= link_to "すべての商品を見る", items_path %>
   </div>
 </div>

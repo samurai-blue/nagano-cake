@@ -1,26 +1,48 @@
-<h1>商品詳細</h1>
 
+<div class="container">
+<div class="row" style="width: 90%; margin: 20px auto;">
+  <div class="col-lg-1" ></div>
+  <div class="col-lg-5" style ="margin: 100px 0 100px 0">
+    <%= attachment_image_tag @item, :image, style:  "max-width: 100%" %>
+  </div>
+  <div class="col-lg-6" style ="margin: 100px 0 100px 0">
 
-<%= attachment_image_tag @item, :image %>
-<tbody>
-    <tr>
-    <th>商品名</th>
-    <%= @item.name %>
-     </tr>
+    <table class="table">
+	  <tr>
+		<th>商品名</th>
+		<td><%= @item.name %></td>
+	  </tr>
 
-    <tr>
-    <th>商品説明</th>
-    <%= @item.description %>
-    </tr>
+	  <tr>
+		<th>商品説明</th>
+		<td><%= @item.description %></td>
+	  </tr>
 
-    <th>ジャンル</th>
-    <%= @item.genre.name %>
+	  <tr>
+	    <th>ジャンル</th>
+		<td><%= @item.genre.name %></td>
+	  </tr>
 
-    <th>税込価格</th>
-    <%= @item.price %>
+	  <tr>
+        <th>税込価格 （税抜価格）</th>
+		<!--<td><= AddTax(@item.price) %>   (<= @item.price %>)  円</td>-->
+		<td>
+			<%= @item.add_tax_price.to_s(:delimitted) %> 円
+	  </td>
+	  <tr>
+	    <th>販売ステータス</th>
+		<td>
+		  <% if @item.is_saled == false %>
+		    販売中
+		  <% elsif @item.is_saled == true %>
+		    販売停止
+		  <% end %>
+		</td>
+	  </tr>
+	  </table>
 
-    <th>販売ステース</th>
-    <%= @item.status %>
-
-    <%= link_to '編集する', edit_admin_item_path(@item.id) %>
-</tbody>
+	  <%= link_to edit_admin_item_path(@item.id) do%>
+		<label class="btn btn-success", class= "positon: relative; top: 5px; left: 10px;">編集する</label>
+	  <% end %>
+  </div>
+</div>
