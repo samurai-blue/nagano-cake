@@ -9,7 +9,7 @@
           <tr>
             <th>購入日時</th>
             <th>購入者</th>
-            <th>注文商品</th>
+            <th>注文</th>
             <th>注文ステータス</th>
           </tr>
         </thead>
@@ -21,7 +21,7 @@
                   <%= order.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
                 <% end %>
               </td>
-              <td><%= order.send_to_address %></td>
+              <td><%= order.customer.last_name %> <%= order.customer.first_name %></td>
               <td>
                 <% sum_all = 0 %>
                 <% order.order_details.each do |order_item| %>

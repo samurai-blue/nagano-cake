@@ -16,7 +16,7 @@
   <div class="row">
     <div class="col-lg-4 btn-group" data-toggle="buttons">
       <label class="btn btn-outline-secondary active" style="width:50%">
-        <%= f.radio_button :payment_method, "クレジットカード", {checked: "クレジットカード"} %> クレジットカード
+        <%= f.radio_button :payment_method, "クレジットカード", {checked: true} %> クレジットカード
       </label>
       <label class="btn btn-outline-secondary" style="width:50%">
         <%= f.radio_button :payment_method, "銀行振込", {} %> 銀行振込
@@ -30,7 +30,10 @@
   </div>
   <!-- 自身の住所 -->
   <div class="row">
-    zz
+    <label><%= f.radio_button :add, 1, checked: true, checked: "checked" %>ご自身の住所</label><br>
+      <%= @customer.postal_code %>
+      <%= @customer.address %>
+      <%= @customer.full_name %>
   </div>
 
   <!-- 登録済み住所 -->
