@@ -30,10 +30,12 @@
   </div>
   <!-- 自身の住所 -->
   <div class="row">
-    <label><%= f.radio_button :add, 1, checked: true, checked: "checked" %>ご自身の住所</label><br>
+    <p>
+      <label><%= f.radio_button :add, 1, checked: true, checked: "checked" %>ご自身の住所</label><br>
       <%= @customer.postal_code %>
       <%= @customer.address %>
       <%= @customer.full_name %>
+    </p>
   </div>
 
   <!-- 登録済み住所 -->
