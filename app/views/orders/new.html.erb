@@ -16,10 +16,10 @@
   <div class="row">
     <div class="col-lg-4 btn-group" data-toggle="buttons">
       <label class="btn btn-outline-secondary active" style="width:50%">
-        <%= f.radio_button :payment_method, true, {checked: true} %> クレジットカード
+        <%= f.radio_button :payment_method, "クレジットカード", {checked: "クレジットカード"} %> クレジットカード
       </label>
       <label class="btn btn-outline-secondary" style="width:50%">
-        <%= f.radio_button :payment_method, false, {} %> 銀行振込
+        <%= f.radio_button :payment_method, "銀行振込", {} %> 銀行振込
       </label>
     </div>
   </div>
