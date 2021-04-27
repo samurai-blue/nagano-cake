@@ -1,6 +1,5 @@
 <div class = "container">
   <div class="row">
-<<<<<<< HEAD
     <!--<h1>ようこそながのCAKEへ！</h1>-->
   </div>
   <!--<div class ="row">-->
@@ -25,37 +24,6 @@
       </div>
     <% end %>
   </div>
-=======
-    <div class="col-10 offset-1">
-      <div class="row d-flex align-items-center">
-        <h1>ようこそながのCAKEへ！</h1>
-      </div>
-      <div class ="row">
-        <div class = "mx-auto ">
-          <!--<div class ="center-block">-->
-            このサイトはケーキ販売のECサイトになります。</br>
-            会員でない方も商品の閲覧はできますが</br>
-            購入には会員登録が必要になります。</br>
-          <!--</div>-->
-        </div>
-      </div>
-      <div class ="row">
-        <h2 style="margin:30px 0;">新着商品</h2>
-      </div>
-      <div class ="row">
-        <% @items.each do |item| %>
-          <div class="col-3">
-            <div class ="row"><%= attachment_image_tag(item, :image, fallback: "no_img.jpg", size: '100x70') %></div>
-            <div class ="row"><%= item.name %></div>
-            <div class ="row"><%= item.price %>円</div>
-          </div>
-        <% end %>
-      </div>
-      <div class ="row float-right">
-        <%= link_to "すべての商品を見る", items_path %>
-      </div>
-    </div>
->>>>>>> origin/develop
   </div>
   <div class ="row float-right">
     <%#= link_to "すべての商品を見る", items_path %>

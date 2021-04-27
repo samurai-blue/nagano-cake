@@ -3,16 +3,15 @@ class OrdersController < ApplicationController
 
   before_action :set_customer
 
-<<<<<<< HEAD
   def index
     @orders = current_customer.orders
-=======
+  end
+
   def new
     @order = Order.new
     @customer = current_customer
 
     # @shippings = @customer.shippings.all
->>>>>>> origin/develop
   end
 
 
