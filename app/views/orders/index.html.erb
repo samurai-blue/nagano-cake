@@ -1,10 +1,63 @@
+<<<<<<< HEAD
 
  <div class="col-lg-10 offset-1 space">
+=======
+<div class = "container">
+  <div class ="row">
+    <div class="col-lg-10 offset-lg-1">
+>>>>>>> origin/develop
 
-  <div class="row">
-    <h2>注文履歴一覧</h2>
-  </div>
+      <h2 class="title_h2 text-left" style="margin-bottom: 30px;">注文履歴一覧</h2>
 
+      <table class = "table table-hover">
+        <thead class = "thead-light">
+          <tr>
+            <th>注文日</th>
+            <th>配送先</th>
+            <th>注文商品</th>
+            <th>支払金額</th>
+            <th>状況</th>
+            <th>注文詳細</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @orders.each do |order| %>
+            <tr>
+              <td><%= order.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+              <td>
+                〒<%= order.postal_code %><br>
+                <%= order.send_to_address %><br>
+                <%= order.name %>
+              </td>
+              <td>
+                <% sum_all = 0 %>
+                <% order.order_details.each do |order_item| %>
+                <%= order_item.item.name %><br>
+                <% sub_total = price_include_tax(order_item.total_payment).to_i * order_item.quantity %>
+                <% sum_all += sub_total.to_i %>
+                <% end %>
+              </td>
+              <td>
+                <%= sum_all += order.shipping_cost.to_i %>円
+              </td>
+
+              <td><%= order.order_status %></td>
+              <td><%= link_to '表示する', order_path(order), class: "btn btn-sm btn-danger" %></td>
+              <!--th><= order.customer_id %></th-->
+              <!--th><= link_to admin_item_path(order.id) do%><= item.name %> < end %></th-->
+              <!--th><= item.price %></th-->
+              <!--th><= item.genre.name %></th-->
+              <!-- if item.is_saled %>
+                <!--th>販売中</th>
+              < else %>
+                 <th>販売停止中</th>
+              < end %-->
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+<<<<<<< HEAD
   <div class="d-none d-lg-block space">
     <div class="row">
       <div class="col-lg-2">注文日</div>
@@ -46,7 +99,17 @@
     </div>
     <div class="col-lg-2">
       <%= link_to '表示する', order_path(order), class: "btn btn-sm btn-danger" %>
+=======
+
+
+>>>>>>> origin/develop
     </div>
+    <div class="col-lg-1"></div>
   </div>
+<<<<<<< HEAD
   <% end %>
 </div>
+=======
+</div>
+
+>>>>>>> origin/develop
