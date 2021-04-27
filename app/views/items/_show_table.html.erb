@@ -1,0 +1,28 @@
+<table class="table">
+        <tr>
+          <th>商品名</th>
+          <td><%= item.name %></td>
+        </tr>
+        <tr>
+          <th>商品説明</th>
+          <td><%= item.description %></td>
+        </tr>
+        <tr>
+          <th>税込価格 （税抜価格）</th>
+          <td>
+            <%= price_include_tax(item.price) %>
+          </td>
+        </tr>
+        <tr>
+          <%= form_with(model: [item, cart], url:cart_items_path,local: true ) do |f| %>
+            <td>
+              <%= f.label :ご購入個数 %>
+            </td>
+            <td>
+              <%= f.number_field :quantity, value: 1 ,min:1, max:99 %>個
+              <%= f.hidden_field :item_id, value: item.id  %>
+              <%= f.submit "カートに入れる", class: "btn btn-danger" %>
+            </td>
+          <% end %>
+        </tr>
+      </table>

@@ -1,22 +1,32 @@
 class OrdersController < ApplicationController
   before_action :authenticate_customer!
+
   before_action :set_customer
 
+<<<<<<< HEAD
   def index
     @orders = current_customer.orders
+=======
+  def new
+    @order = Order.new
+    @customer = current_customer
+
+    # @shippings = @customer.shippings.all
+>>>>>>> origin/develop
   end
+
 
   def check
     @order = Order.new
     @cart_items = current_customer.cart_items
-    @order.payment_method = params[:order][:payment_method]
+    #@order.payment_method = params[:order][:payment_method]
     # 住所のラジオボタン選択に応じて引数を調整
     @add = params[:order][:add].to_i
     case @add
       when 1
         @order.postal_code = @customer.postal_code
         @order.send_to_address = @customer.address
-        @order.name = @customer.family_name + @customer.first_name
+        @order.name = @customer.last_name + @customer.first_name
       when 2
         @sta = params[:order][:send_to_address].to_i
         @send_to_address = Shipping.find(@sta)
@@ -32,28 +42,10 @@ class OrdersController < ApplicationController
 
 
   def create
-    if current_customer.cart_items.exists?
+    #byebug
+    #if current_customer.cart_items.exists?
       @order = Order.new(order_params)
       @order.customer_id = current_customer.id
-
-      # 住所のラジオボタン選択に応じて引数を調整
-      @add = params[:order][:add].to_i
-      case @add
-        when 1
-          @order.postal_code = @customer.postal_code
-          @order.send_to_address = @customer.address
-          @order.name = full_name(@customer)
-        when 2
-          @order.postal_code = params[:order][:postal_code]
-          @order.send_to_address = params[:order][:send_to_address]
-          @order.name = params[:order][:name]
-        when 3
-          @order.postal_code = params[:order][:postal_code]
-          @order.send_to_address = params[:order][:send_to_address]
-          @order.name = params[:order][:name]
-      end
-      @order.save
-
       # send_to_addressで住所モデル検索、該当データなければ新規作成
       if Shipping.find_by(address: @order.send_to_address).nil?
         @address = Shipping.new
@@ -66,7 +58,7 @@ class OrdersController < ApplicationController
 
       # cart_itemsの内容をorder_itemsに新規登録
       current_customer.cart_items.each do |cart_item|
-        order_item = @order.order_items.build
+        order_item = @order.order_details.build
         order_item.order_id = @order.id
         order_item.item_id = cart_item.item_id
         order_item.quantity = cart_item.quantity
@@ -74,11 +66,20 @@ class OrdersController < ApplicationController
         order_item.save
         cart_item.destroy #order_itemに情報を移したらcart_itemは消去
       end
-      render :finish
-    else
-      redirect_to customer_top_path
-　flash[:danger] = 'カートが空です。'
-    end
+      @order.save
+
+      redirect_to order_finish_path
+  end
+#else
+      #redirect_to customer_top_path
+   #flash[:danger] = 'カートが空です。'
+    #end
+
+  def finish
+  end
+
+  def index
+    @orders = @customer.orders
   end
 
   def show
@@ -87,13 +88,6 @@ class OrdersController < ApplicationController
       redirect_back(fallback_location: root_path)
       flash[:alert] = "アクセスに失敗しました。"
     end
-  end
-
-  def new
-    @order = Order.new
-  end
-
-  def finish
   end
 
   private

@@ -1,50 +1,12 @@
-<!--<div class = "container">-->
-<!--  <div class ="row">-->
-<!--    <h1>商品詳細</h1>   -->
-<!--  </div>-->
-<!--  <div class ="row">-->
-<!--    <div class = "col-auto">-->
-<!--      < %= attachment_image_tag @item, :image %>-->
-<!--    </div>-->
-<!--    <div class = "col-auto">-->
-<!--      <h2>< %= @item.name %></h2>-->
-<!--      <h4>< %= @item.description %></h4>-->
-<!--      <h4>¥< %= @item.price %>円（税込み）</h4>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
-
-
-
-
-<div class="col-lg-10 space">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-4 offset-lg-2">
-        <%= attachment_image_tag(@item, :image, :fill, 560, 420, fallback: "no_img.jpg") %>
+    <div class="row" style="width: 90%; margin: 20px auto;">
+    <div class="col-lg-1" ></div>
+      <div class="col-lg-5" style ="margin: 100px 0 100px 0">
+        <%= attachment_image_tag(@item, :image, style:  "max-width: 100%", fallback: "no_img.jpg", size: '300x200') %>
       </div>
-      <div class="col-lg-4">
-        <h3>
-          <%= @item.name %>
-        </h3>
-        <h4>商品説明</h4>
-        <%= @item.description %>
-        <h4>
-          <%= price_include_tax(@item.price) %>
-        </h4>
+      <div class="col-lg-6" style ="margin: 100px 0 100px 0">
+        <%= render partial: 'show_table', locals: { item: @item, cart: @cart}%>
+        <!--商品詳細テーブル部分テンプレート-->
       </div>
     </div>
   </div>
-
-  <div class="container">
-    <div class="w-50 offset-lg-6">
-    <%= form_with(model: [@item, @cart], url:cart_items_path,local: true ) do |f| %>
-    <!--< %= form_with(model:@customer, url:customer_path, local: true ,method: :put) do |f| %>-->
-    <%= f.label :ご購入個数 %>
-    <%= f.number_field :quantity, value: 1 ,min:1, max:99 %>個
-    <%= f.hidden_field :item_id, value: @item.id  %>
-    <%= f.submit "カートに入れる", class: "btn btn-danger" %>
-    <% end %>
-  </div>
-  </div>
-</div>

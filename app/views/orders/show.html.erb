@@ -1,6 +1,5 @@
-<h1>Orders#show</h1>
-<p>Find me in app/views/orders/show.html.erb</p>
 
+<<<<<<< HEAD
 <!--どうやって一般ユーザーと管理者を区別するかはおいておきますが-->
 <!--ここでは管理者権限の有無で表示内容を変えるのがよいかと思いました-->
 <!--< % else %>  -->
@@ -100,6 +99,8 @@
 
 
 
+=======
+>>>>>>> origin/develop
  <div class="col-lg-10 offset-1 space">
   <div class="row">
     <h2>注文履歴詳細</h2>
@@ -117,7 +118,7 @@
               <strong>注文日</strong>
             </div>
             <div class="col-lg-9">
-              <%= simple_time(@order.created_at) %>
+              <%= @order.created_at %>
             </div>
           </div>
           <div class="row space-sm">
@@ -133,7 +134,7 @@
               <strong>支払方法</strong>
             </div>
             <div class="col-lg-9">
-              <%= payment_method(@order.payment_method) %>
+              < %= payment_method(@order.payment_method) %>
             </div>
           </div>
           <div class="row space-sm">
@@ -141,7 +142,7 @@
               <strong>状況</strong>
             </div>
             <div class="col-lg-9">
-              <%= order_status(@order) %>
+              < %= order_status(@order) %>
             </div>
           </div>
         </div>
@@ -167,19 +168,19 @@
         </div>
       </div>
       <% sum_all = 0 %>
-      <% @order.order_items.each do |order_item| %>
+      <% @order.order_details.each do |order_item| %>
       <div class="row space-sm">
         <div class="col-lg-4">
           <%= order_item.item.name %>
         </div>
         <div class="col-lg-3">
-          <%= price_include_tax(order_item.order_price) %>
+          <%= price_include_tax(order_item. total_payment) %>
         </div>
         <div class="col-lg-2">
           <%= order_item.quantity %>個
         </div>
         <div class="col-lg-2">
-          <%= sub_total = price_include_tax(order_item.order_price).to_i * order_item.quantity %>円
+          <%= sub_total = price_include_tax(order_item. total_payment).to_i * order_item.quantity %>円
           <% sum_all += sub_total %>
         </div>
       </div>

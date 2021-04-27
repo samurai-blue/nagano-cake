@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 2021_04_26_071901) do
     t.integer "order_id"
     t.integer "quantity"
     t.integer "total_payment"
-    t.integer "production_status"
+    t.integer "production_status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 2021_04_26_071901) do
     t.string "postal_code"
     t.text "address"
     t.string "name"
-    t.integer "shipping_cost"
+    t.integer "shipping_cost", default: 800
     t.integer "total_payment"
     t.integer "payment_method"
     t.integer "order_status"
