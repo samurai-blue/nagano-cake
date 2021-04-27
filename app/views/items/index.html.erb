@@ -1,4 +1,3 @@
-<div class="col-lg-10 space">
   <div class="container">
     <div class="display: inline-block">
       <h2>全商品一覧</h2>
@@ -8,7 +7,7 @@
   <div class="container">
     <div class="row">
     <% @items.each do |item| %>
-      <div class="col-lg-4 item-box space", style="margin-top: 40px;">
+      <div class="col-lg-3 item-box space", style="margin-top: 40px;">
 
         <%= link_to item_path(item) do %>
           <div>
@@ -26,8 +25,11 @@
       </div>
     <% end %>
     </div>
+    <div class = "row align-items-center" >
+      <div class = "col" >
+        <%= paginate @items %>
+    </div>
   </div>
-  <%= paginate @items %>
-</div>
+
 
 
