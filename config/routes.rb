@@ -13,8 +13,13 @@ Rails.application.routes.draw do
     get 'homes/top' => 'homes#top', as:'top'
     resources :customers,only: [:index,:show,:edit,:update]
     resources :items, only: [:index, :create, :new, :edit, :show, :update]
-    resources :orders, only: [:index, :create, :show, :update]
-    resources :order_details, only: [:index, :create, :show, :update]
+    resources :orders, only: [:index, :show, :update] do
+      member do
+        get :current_index
+        resource :order_details, only: [:update]
+      end
+    end
+    
     resources :genres, only: [:index, :create, :edit, :update]
     get 'search' => 'searches#search', as: 'search'
   end
